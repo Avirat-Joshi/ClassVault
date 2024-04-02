@@ -1,5 +1,3 @@
-// Line no. :270
-
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -339,6 +337,17 @@ void addstudent()
             else
                 printf("Enter a valid phone number\n");
         }
+        marks_main();
+        for (int i = 0; i < numstudents; i++)
+        {
+            if (strcmp(student[numstudents].rollno, mark[i].rollno) == 0)
+            {
+                student[numstudents].cgpa = mark[i].cgpa;
+            }
+            else
+                student[numstudents].cgpa = 0;
+        }
+
         saveStudentToFile(&student[numstudents]);
         printf("Student details added successfully!\n");
         numstudents++;
@@ -758,7 +767,7 @@ void fees()
         }
         else if (student[i].annualincome < 500000)
         {
-            student[i].tutionfee = (tutfee * 2) / 3;
+            student[i].tutionfee = (tutfee * 1) / 3;
         }
         else
         {
@@ -872,7 +881,7 @@ void showfeedback()
     }
     fclose(feedback);
 }
-void input_main()
+int main()
 {
     loaddatafromfile();
     loadfeedbackfromfile();
@@ -1119,4 +1128,5 @@ goto1:
         goto goto1;
         break;
     }
+    return 0;
 }
