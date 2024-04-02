@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "input_csv_teachers.c"
-#include "marks.c"
+#include "marks_final.c"
 #define FILENAME "students.csv"
 #define FILENAMEFEEDBACK "feedback.csv"
 struct students
