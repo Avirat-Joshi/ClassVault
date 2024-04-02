@@ -168,14 +168,14 @@ void get_data_student()
         return;
     }
 
-    while (fscanf(files, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%d,%d,%f\n", &student1[numstudents_password_generator].name, &student1[numstudents_password_generator].rollno, &student1[numstudents_password_generator].gender, &student1[numstudents_password_generator].dateofBirth,&student1[numstudents_password_generator].bloodgroup,&student1[numstudents_password_generator].category, &student1[numstudents_password_generator].branch, &student1[numstudents_password_generator].state, &student1[numstudents_password_generator].email,&student1[numstudents_password_generator].annualincome, &student1[numstudents_password_generator].mobileno,&student1[numstudents_password_generator].totalfee,&student1[numstudents_password_generator].tutionfee,&student1[numstudents_password_generator].cgpa) == 15)
+    while (fscanf(files, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%f,%d,%d\n", &student1[numstudents_password_generator].name, &student1[numstudents_password_generator].rollno, &student1[numstudents_password_generator].gender, &student1[numstudents_password_generator].dateofBirth,&student1[numstudents_password_generator].bloodgroup,&student1[numstudents_password_generator].category, &student1[numstudents_password_generator].branch, &student1[numstudents_password_generator].state,&student1[numstudents_password_generator].address, &student1[numstudents_password_generator].email,&student1[numstudents_password_generator].annualincome, &student1[numstudents_password_generator].mobileno,&student1[numstudents_password_generator].cgpa,&student1[numstudents_password_generator].totalfee,&student1[numstudents_password_generator].tutionfee) == 15)
     {
         numstudents_password_generator++;
         if (numstudents_password_generator >= max_students)
         {
             break;
         }
-    }
+    } 
 }
 void get_data_employee()
 {
