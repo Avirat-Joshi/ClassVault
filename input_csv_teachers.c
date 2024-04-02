@@ -189,20 +189,17 @@ void removeteacher()
 }
 void searchbyteachername(char str[])
 {
-    int index = -1;
+    int n = strlen(str);
+    int check =0;
     for (int i = 0; i < numteachers; i++)
     {
-        if (strcmp(str, teacher[i].name) == 0)
+        if (strncmp(str, teacher[i].name,n) == 0)
         {
-            index = i;
+            printf("%-20s%-10s%-10s%-10d%-20s%-28s%-10lld\n", teacher[i].name, teacher[i].employeeID, teacher[i].gender, teacher[i].age, teacher[i].state, teacher[i].email, teacher[i].mobileno);
+            check++;
         }
     }
-    if (index != -1)
-    {
-        printf("Teacher Found.\n");
-        printf("%-20s%-10s%-10s%-10d%-20s%-28s%-10lld\n", teacher[index].name, teacher[index].employeeID, teacher[index].gender, teacher[index].age, teacher[index].state, teacher[index].email, teacher[index].mobileno);
-    }
-    else
+    if(check ==0)
     {
         printf("Teacher was not found.\n");
     }
