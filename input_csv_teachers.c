@@ -170,11 +170,15 @@ void removeteacher()
     {
         return;
     }
-
+x:
     printf("Enter the S.no of the teacher to be removed\n");
     FILE *file = fopen(FILENAMETEACHERS, "w");
     int remove;
     scanf("%d", &remove);
+    if(remove<1 || remove>=numteachers){
+        printf("Invalid Input, Please retry\n");
+        goto x;
+    }
     for (int i = remove - 1; i < numteachers - 1; i++)
     {
         teacher[i] = teacher[i + 1];
