@@ -18,6 +18,25 @@ struct marks
     float cgpa;
     char grade[5][3];
 };
+struct existing_students
+{
+    char name[50];
+    char rollno[10];
+    char gender[10];
+    char dateofBirth[11];
+    char bloodgroup[4];
+    char category[10];
+    char branch[20];
+    char state[25];
+    char address[60];
+    char email[30];
+    int annualincome;
+    long long int mobileno;
+    float cgpa;
+    int totalfee;
+    int tutionfee;
+};
+struct existing_students es[5000];
 struct marks array[5000];
 int index__[5000];
 int credit[5];
@@ -110,7 +129,7 @@ here3:
 
     for (int i = 0; i < k; i++)
     {
-        if (strcmp(array[i].rollno, array[k].rollno) == 0 )
+        if (strcmp(array[i].rollno, array[k].rollno) == 0)
         {
             printf("Enter a Valid roll number :\n");
             goto here3;
@@ -349,8 +368,51 @@ void viewstudents(struct marks array[], FILE *ptr)
         printf("This roll number does not exist");
     }
 }
+void save_students_csv()
+{
+    FILE *file1 = fopen("students.csv", "a");
+    fclose(file1);
+    FILE *file = fopen("students.csv", "r");
+    if (file == NULL)
+    {
+        perror("Error :");
+        return;
+    }
+    int num_ss=0;
+    
+    while (fscanf(file, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%f,%d,%d\n", &es[num_ss].name, &es[num_ss].rollno, &es[num_ss].gender, &es[num_ss].dateofBirth, &es[num_ss].bloodgroup, &es[num_ss].category, &es[num_ss].branch, &es[num_ss].state, &es[num_ss].address, &es[num_ss].email, &es[num_ss].annualincome, &es[num_ss].mobileno, &es[num_ss].cgpa, &es[num_ss].totalfee, &es[num_ss].tutionfee) == 15)
+    {
+        num_ss++;
+        if (num_ss >= 5000)
+        {
+            break;
+        }
+    }
+    fclose(file);
 
-void marks_main()
+    for(int arr_var=0;arr_var<k;arr_var++)
+    {
+        for(int es_var=0;es_var<num_ss;es_var++)
+        {
+            if(strcmp(array[arr_var].rollno,es[es_var].rollno)==0)
+                es[es_var].cgpa=array[arr_var].cgpa;
+        }  
+    }
+
+    FILE *file_ss = fopen("students.csv", "w");
+    if (file_ss == NULL)
+    {
+        perror("Error :");
+        return;
+    }
+
+    for (int i = 0; i < num_ss; i++)
+    {
+        fprintf(file_ss, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%f,%d,%d\n", es[num_ss].name, es[num_ss].rollno, es[num_ss].gender, es[num_ss].dateofBirth, es[num_ss].bloodgroup, es[num_ss].category, es[num_ss].branch, es[num_ss].state, es[num_ss].address, es[num_ss].email, es[num_ss].annualincome, es[num_ss].mobileno, es[num_ss].cgpa, es[num_ss].totalfee, es[num_ss].tutionfee);
+    }
+    fclose(file_ss);
+}
+int main()
 {
     int a;
     loaddata1();
@@ -401,4 +463,5 @@ void marks_main()
         cg(credit, array);
         break;
     }
+    save_students_csv();
 }
