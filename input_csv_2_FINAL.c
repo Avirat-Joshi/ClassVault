@@ -631,11 +631,15 @@ void removestudent()
     {
         return;
     }
-
+x:
     printf("Enter the S.no of the student to be removed\n");
     FILE *file = fopen(FILENAME, "w");
     int remove;
     scanf("%d", &remove);
+    if(remove<1 || remove>=numstudents){
+        printf("Invalid Input, Please retry\n");
+        goto x;
+    }
     for (int i = remove - 1; i < numstudents - 1; i++)
     {
         student[i] = student[i + 1];
