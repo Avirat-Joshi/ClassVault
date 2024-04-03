@@ -97,6 +97,9 @@ int e_authenticate(char *str)
 int main()
 {
     password_generator_main();
+    loaddatafromfile();
+    loadfeedbackfromfile();
+    loadteacherdatafromfile();
     printf("Welcome to Classvault\n");
     int login = 0;
     char roll[10];
@@ -104,7 +107,7 @@ int main()
     printf("Use Classvalue as a :\n1. Student\n2. Teacher\n");
 goto1:
     scanf("%d", &login);
-    loaddatafromfile();
+
     switch (login)
     {
     case 1:
@@ -112,6 +115,7 @@ goto1:
         printf("Enter roll number: ");
         fflush(stdin);
         gets(roll);
+        strupr(roll);
         if (s_authenticate(roll) == 1)
         {
             int choice, choice2;
@@ -119,12 +123,8 @@ goto1:
             {
                 printf("\nStudent-list Menu\n");
                 printf("0. Exit\n");
-                // printf("1. Add Student\n");
                 printf("1. View your details\n");
-                // printf("3. Remove Student\n");
                 printf("2. Edit details\n");
-                // printf("5. Search Student\n");
-                // printf("6. Group Student\n");
                 printf("3. Give Feedback\n");
                 printf("4. Fee Details\n");
                 printf("5. Apply for branch change\n");
@@ -139,7 +139,7 @@ goto1:
                     printf("Exiting Classvault. Goodbye!\n");
                     break;
                 case 1:
-                    viewstudent();
+                    viewstudent_for_student(roll);
                     break;
                 case 2:
                 {
@@ -155,7 +155,7 @@ goto1:
                     givefeedback();
                     break;
                 case 4:
-                    fees();
+                    fees(roll);
                     break;
                 case 5:
                     branch_change_student_main();
@@ -179,7 +179,7 @@ goto1:
         gets(empID);
         if (e_authenticate(empID) == 1)
         {
-            loadteacherdatafromfile();
+
             printf("Welcome to Classvault\n");
             int choice, choice2;
 
@@ -192,9 +192,13 @@ goto1:
                 printf("3. Remove Person\n");
                 printf("4. Search Teacher \n");
                 printf("5. Search Student \n");
-                printf("6. Filter Student\n");
-                printf("7. Show Feedback\n");
-                printf("8. Change Password\n");
+                printf("6. Enter marks\n");
+                printf("7. View Results\n");
+                printf("8. Initiate branch change\n");
+                printf("9. Filter Student\n");
+                printf("10. Show Feedback\n");
+                printf("11. Change Password\n");
+            start:
                 printf("Enter your choice(pls enter the number): ");
                 scanf("%d", &choice);
 
@@ -260,7 +264,7 @@ goto1:
                             viewteacher();
                             break;
                         case 2:
-                            viewstudent();
+                            viewstudent_for_teacher();
                             break;
                         default:
                             printf("Enter Correct number :");
@@ -431,13 +435,28 @@ goto1:
                 }
                 case 6:
                 {
+                    marks_input_main();
+                    break;
+                }
+                case 7:
+                {
+                    view_marks_for_teacher();
+                    break;
+                }
+                case 8:
+                {
+                    branch_change_admin_verify_main();
+                    break;
+                }
+                case 9:
+                {
                     do
                     {
-                        printf("\nStudent-Group Menu\n");
+                        printf("\nStudent-Filter Menu\n");
                         printf("0. Exit\n");
-                        printf("1. Group by branch.\n");
-                        printf("2. Group by state.\n");
-                        printf("3. Group by gender.\n");
+                        printf("1. Filter by branch.\n");
+                        printf("2. Filter by state.\n");
+                        printf("3. Filter by gender.\n");
                         printf("Enter your choice(pls enter the number): ");
                     goto6:
                         scanf("%d", &choice2);
@@ -446,7 +465,7 @@ goto1:
                         switch (choice2)
                         {
                         case 0:
-                            printf("Exiting student-group\n");
+                            printf("Exiting student-Filter\n");
                             sleep(1);
                             break;
                         case 1:
@@ -527,60 +546,16 @@ goto1:
                     } while (choice2 != 0);
                     break;
                 }
-                // {
-                //     do
-                //     {
-                //         printf("\nStudent-Group Menu\n");
-                //         printf("0. Exit\n");
-                //         printf("1. Group by gender.\n");
-                //         printf("Enter your choice(pls enter the number): ");
-                //         scanf("%d", &choice2);
-                //         getchar();
 
-                //         switch (choice2)
-                //         {
-                //         case 0:
-                //             printf("Exiting student-group\n");
-                //             sleep(1);
-                //             break;
-                //         case 1:
-                //         {
-                //             char gender;
-                //             char teacher_gender[10];
-                //             printf("Enter your gender.\n");
-                //         there:
-                //             printf("M for male and F for female.\n");
-                //             scanf("%c", &gender);
-                //             getchar();
-                //             if (gender == 'M' || gender == 'm')
-                //             {
-                //                 strcpy(teacher_gender, "MALE");
-                //             }
-                //             else if (gender == 'F' || gender == 'f')
-                //             {
-                //                 strcpy(teacher_gender, "FEMALE");
-                //             }
-                //             else
-                //             {
-                //                 printf("Enter correct gender : ");
-                //                 goto there;
-                //             }
-                //             groupbyteachergender(teacher_gender);
-                //             break;
-                //         }
-                //         }
-                //     } while (choice2 != 0);
-                //     break;
-                // }
-                case 7:
+                case 10:
                     showfeedback();
                     break;
-                case 8:
+                case 11:
                     password_change_employee_main();
                     break;
                 default:
-                    printf("Invalid choice. Exiting application.\n");
-                    return 0;
+                    printf("Invalid choice. Please retry..\n");
+                    goto start;
                 }
                 sleep(1);
             } while (choice != 0);
