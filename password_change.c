@@ -21,9 +21,9 @@ struct student_credentials_password_change stud_cred_password_change;
 struct student_credentials_password_change existing_stud_cred[max_students];
 void get_existing_credential_data()
 {
-    FILE *file_1 = fopen("credentials.csv", "a");
+    FILE *file_1 = fopen("credentials_student.csv", "a");
     fclose(file_1);
-    FILE *file_2 = fopen("credentials.csv", "r");
+    FILE *file_2 = fopen("credentials_student.csv", "r");
     if (file_2 == NULL)
     {
         perror("Error in opening the file\n");
@@ -94,7 +94,7 @@ re_enter:
 }
 void print_data()
 {
-    FILE *file2 = fopen("credentials.csv", "w");
+    FILE *file2 = fopen("credentials_student.csv", "w");
     if (file2 == NULL)
     {
         perror("Error opening file for writing\n");
