@@ -77,8 +77,7 @@ void get_existing_student_details()
         perror("Error in opening the file\n");
         return;
     }
-    char temp1[11], temp2[13];
-    while (fscanf(file, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%d,%d,%f\n", &student_branch_change[numstudents1].name, &student_branch_change[numstudents1].rollno, &student_branch_change[numstudents1].gender, &student_branch_change[numstudents1].dateofBirth,&student_branch_change[numstudents1].bloodgroup,&student_branch_change[numstudents1].category, &student_branch_change[numstudents1].branch, &student_branch_change[numstudents1].state, &student_branch_change[numstudents1].email,&student_branch_change[numstudents1].annualincome, &student_branch_change[numstudents1].mobileno,&student_branch_change[numstudents1].totalfee,&student_branch_change[numstudents1].tutionfee,&student_branch_change[numstudents1].cgpa) == 15)
+    while (fscanf(file, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%f,%d,%d\n", &student_branch_change[numstudents1].name, &student_branch_change[numstudents1].rollno, &student_branch_change[numstudents1].gender, &student_branch_change[numstudents1].dateofBirth,&student_branch_change[numstudents1].bloodgroup,&student_branch_change[numstudents1].category, &student_branch_change[numstudents1].branch, &student_branch_change[numstudents1].state,&student_branch_change[numstudents1].address, &student_branch_change[numstudents1].email,&student_branch_change[numstudents1].annualincome, &student_branch_change[numstudents1].mobileno,&student_branch_change[numstudents1].cgpa,&student_branch_change[numstudents1].totalfee,&student_branch_change[numstudents1].tutionfee) == 15)
     {
         numstudents1++;
         if (numstudents1 >= max_students)
@@ -113,11 +112,8 @@ void get_details_from_user()
 {
     printf("Welcome to Branch change forum\n ");
     int choice = 1;
-    int d;
-    do
-    {
     again:
-        printf("Do you want to add for branch change\n");
+        printf("Do you want to apply for branch change\n");
         printf("1. Yes\n 2.No\n");
         scanf("%d", &choice);
         switch (choice)
@@ -128,13 +124,11 @@ void get_details_from_user()
             get_current_branch();
             break;
         case 2:
-            d = 0;
             break;
         default:
             printf("Wrong input, please retry ");
             goto again;
         }
-    } while (d != 0);
 }
 int i;
 void get_current_branch()
@@ -161,7 +155,7 @@ void get_current_branch()
     }
     printf("Current branch is %s", student_branch_change[i].branch);
     strcpy(depC_details.current_branch, student_branch_change[i].branch);
-    strcpy(depC_details.approve, "NOT YET\0");
+    strcpy(depC_details.approve, "NOT YET");
     depC_details.cgpa = student_branch_change[i].cgpa;
     ask_branch_choice();
 }
@@ -239,6 +233,7 @@ void confirmation_choice()
     case 1:
     retry:
         printf("Enter password: ");
+        fflush(stdin);
         gets(password);
         for (int k = 0; k < numstudents1; k++)
         {
@@ -256,7 +251,6 @@ void confirmation_choice()
                 }
             }
         }
-        printf("Your choices are recorded \n");
         break;
     case 2:
         printf("Your choices won't be recorded \n");
@@ -650,11 +644,14 @@ void update_data()
     }
     fclose(file);
 }
-void branch_change_main()
+void branch_change_student_main()
 {
     get_existing_student_details();
     get_credentials();
     get_details_from_user();
+}
+void branch_change_admin_verify_main()
+{
     branch_change_admin_verify();
     show_result();
 }
