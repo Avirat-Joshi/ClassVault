@@ -26,7 +26,9 @@ void set_credits();
 void input_marks();
 void sort_marks();
 void assign_grade();
-void view();
+void view_marks_for_teacher();
+void view_cgpa_for_student(char str[]);
+void marks_input_main();
 void marks_main();
 
 void merge_marks(float a[], int low, int mid, int high)
@@ -233,12 +235,37 @@ void assign_grade()
         }
     }
 }
-void view()
+void view_marks_for_teacher()
 {
     for (int i = 0; i < numstudent_marks; i++)
     {
         printf("%s,%d,%d,%d,%d,%d,%.2f\n", mark[i].rollno, mark[i].grade_weightage[0], mark[i].grade_weightage[1], mark[i].grade_weightage[2], mark[i].grade_weightage[3], mark[i].grade_weightage[4], mark[i].cgpa);
     }
+}
+void view_cgpa_for_student(char str[])
+{
+    int index = -1;
+    for (int i = 0; i < numstudent_marks; i++)
+    {
+        if (strcmp(str, mark[i].rollno) == 0)
+        {
+            index = i;
+        }
+    }
+    if (index != -1)
+    {
+        printf("Roll no. : %s ", mark[index].rollno);
+        printf("CGPA : %d\n", mark[index].cgpa);
+    }
+}
+
+void marks_input_main()
+{
+set_credits();
+loaddata();
+input_marks();
+sort_marks();
+assign_grade();
 }
 void marks_main()
 {
@@ -246,6 +273,5 @@ void marks_main()
     loaddata();
     sort_marks();
     assign_grade();
-    // input functionallity will be given to teacher
     return;
 }
