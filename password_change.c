@@ -57,7 +57,7 @@ void check_existence()
 }
 void get_password()
 {
-    printf("Enter old password ");
+    printf("Enter old password: ");
     gets(stud_cred_password_change.old_password);
     check_password();
 }
@@ -77,9 +77,9 @@ void reset_password()
 {
     char new[50];
 re_enter:
-    printf("Enter new password ");
+    printf("Enter new password: ");
     gets(stud_cred_password_change.new_password);
-    printf("Re-Enter password");
+    printf("Re-Enter password: ");
     gets(new);
     if (strcmp(new, stud_cred_password_change.new_password) == 0)
     {
