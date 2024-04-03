@@ -41,7 +41,8 @@ void merge(int low, int mid, int high);
 void sortstudent(int l, int r);
 void addstudent();
 void editstudent(char str[]);
-void viewstudent();
+void viewstudent_for_teacher();
+void viewstudent_for_student(char str[]);
 void removestudent();
 void searchbyname(char str[]);
 void searchbymobno(long long int number);
@@ -49,7 +50,7 @@ void searchbyrollno(char str[]);
 void groupbybranch(char str[]);
 void groupbystate(char str[]);
 void groupbygender(char str[]);
-void fees();
+void fees(char str[]);
 void savefeedbacktoFile(struct feedbacks *stud_feedback);
 void loadfeedbackfromfile();
 void givefeedback();
@@ -347,7 +348,6 @@ void addstudent()
             else
                 student[numstudents].cgpa = 0;
         }
-
         saveStudentToFile(&student[numstudents]);
         printf("Student details added successfully!\n");
         numstudents++;
@@ -608,7 +608,34 @@ herechoice:
     printf("Student details updated successfully!\n");
     saveStudentToFile(&student[edit_index]);
 }
-void viewstudent()
+void viewstudent_for_student(char str[])
+{
+    if (numstudents > 0)
+    {
+        int index = -1;
+        for (int i = 0; i < numstudents; i++)
+        {
+            if (strcmp(str, student[i].rollno) == 0)
+            {
+                index = i;
+            }
+        }
+        if (index != -1)
+        {
+        printf("%-30s%-15s%-15s%-35s%-15s%-10s\n", "name", "roll no.", "branch", "E-Mail ID", "Gender", "CGPA");
+            printf("%-30s%-15s%-15s%-35s%-15s%-10.2f\n\n", student[index].name, student[index].rollno, student[index].branch, student[index].email, student[index].gender, student[index].cgpa);
+            printf("Contact Details:\n");
+            printf("Address:%s \n",student[index].address);
+            printf("Phone No.:%lld\n",student[index].mobileno);
+        }
+        else
+            printf("Student not found!");
+
+    }
+    else
+        printf("No students to display\n");
+}
+void viewstudent_for_teacher()
 {
     if (numstudents > 0)
     {
@@ -626,7 +653,7 @@ void viewstudent()
 }
 void removestudent()
 {
-    viewstudent();
+    viewstudent_for_teacher();
     if (numstudents == 0)
     {
         return;
@@ -636,7 +663,8 @@ x:
     FILE *file = fopen(FILENAME, "w");
     int remove;
     scanf("%d", &remove);
-    if(remove<1 || remove>=numstudents){
+    if (remove < 1 || remove >= numstudents)
+    {
         printf("Invalid Input, Please retry\n");
         goto x;
     }
@@ -757,7 +785,7 @@ void groupbygender(char str[])
         printf("%-30s%-15s%-15s%-35s%-15s\n", student[indices[i]].name, student[indices[i]].rollno, student[indices[i]].branch, student[indices[i]].email, student[indices[i]].gender);
     }
 }
-void fees()
+void fees(char str[])
 {
     int messfee = 18000;
     int tutfee = 100000;
@@ -780,12 +808,21 @@ void fees()
 
         student[i].totalfee = messfee + otherfee + student[i].tutionfee;
     }
-    printf("%-7s%-25s%-15s%-15s%-15s%-15s%-15s\n", "Sr no.", "name", "roll no.", "branch", "Tution Fee", "Mess+Other", "Total Fee");
+    printf("%-25s%-15s%-15s%-15s%-15s%-15s\n", "name", "roll no.", "branch", "Tution Fee", "Mess+Other", "Total Fee");
     printf("\n");
 
+    int index = -1;
     for (int i = 0; i < numstudents; i++)
     {
-        printf("%-5d: %-25s%-15s%-15s%-15d%-15d%-15d\n", i + 1, student[i].name, student[i].rollno, student[i].branch, student[i].tutionfee, (messfee + otherfee), student[i].totalfee);
+        if (strcmp(str, student[i].rollno) == 0)
+        {
+            index = i;
+        }
+    }
+    if (index != -1)
+    {
+
+        printf("%-25s%-15s%-15s%-15d%-15d%-15d\n", student[index].name, student[index].rollno, student[index].branch, student[index].tutionfee, (messfee + otherfee), student[index].totalfee);
     }
 }
 void savefeedbacktoFile(struct feedbacks *stud_feedback)
@@ -853,7 +890,6 @@ void givefeedback()
 }
 void showfeedback()
 {
-    // authentication
     FILE *feedback = fopen(FILENAMEFEEDBACK, "a");
     char teachername[20];
     char teacherid[10];
@@ -885,252 +921,4 @@ void showfeedback()
     }
     fclose(feedback);
 }
-void input_csv_2_final_main()
-{
-//     loaddatafromfile();
-//     loadfeedbackfromfile();
-//     loadteacherdatafromfile();
-//     printf("Welcome to Classvault\n");
-//     int login = 0;
-//     printf("Use Classvalue as a :\n1. Student\n2. Teacher\n");
-// goto1:
-//     scanf("%d", &login);
-//     switch (login)
-//     {
-//     case 1:
-//     {
-//         int choice, choice2;
-//         do
-//         {
-//             printf("\nStudent-list Menu\n");
-//             printf("0. Exit\n");
-//             printf("1. Add Student\n");
-//             printf("2. View Student\n");
-//             printf("3. Remove Student\n");
-//             printf("4. Edit Student\n");
-//             printf("5. Search Student\n");
-//             printf("6. Group Student\n");
-//             printf("7. Give Feedback\n");
-//             printf("8. Fee Details\n");
-//             printf("Enter your choice(pls enter the number): ");
-//         gotohere:
-//             scanf("%d", &choice);
 
-//             switch (choice)
-//             {
-//             case 0:
-//                 printf("Exiting Classvault. Goodbye!\n");
-//                 break;
-//             case 1:
-//                 addstudent();
-//                 break;
-//             case 2:
-//                 viewstudent();
-//                 break;
-//             case 3:
-//                 removestudent();
-//                 break;
-//             case 4:
-//             {
-//                 char roll_num[10];
-//                 printf("Enter the Roll no. of the student you want to edit : ");
-//                 scanf("%s", &roll_num);
-//                 getchar();
-//                 strupr(roll_num);
-//                 editstudent(roll_num);
-//                 break;
-//             }
-//             case 5:
-//             {
-//                 do
-//                 {
-//                     printf("\nStudent-search Menu\n");
-//                     printf("0. Exit\n");
-//                     printf("1. Search by name.\n");
-//                     printf("2. Search by mobile number.\n");
-//                     printf("3. Search by Roll no.\n");
-//                     printf("Enter your choice(pls enter the number): ");
-//                 goto2:
-//                     scanf("%d", &choice2);
-//                     getchar();
-
-//                     switch (choice2)
-//                     {
-//                     case 0:
-//                         printf("Exiting student-search.\n");
-//                         sleep(1);
-//                         break;
-//                     case 1:
-//                     {
-//                         char stud_name[50];
-//                         printf("Enter the name : ");
-//                         scanf("%s", &stud_name);
-//                         strupr(stud_name);
-//                         searchbyname(stud_name);
-//                         break;
-//                     }
-//                     case 2:
-//                     {
-//                         long long int mob_num;
-//                         printf("Enter your mobile no.: ");
-//                         while (1)
-//                         {
-//                             scanf("%lld", &mob_num);
-//                             long long int temp = mob_num;
-//                             int count = 0;
-//                             while (temp)
-//                             {
-//                                 temp /= 10;
-//                                 count++;
-//                             }
-//                             if (count == 10)
-//                             {
-//                                 break;
-//                             }
-//                             else
-//                                 printf("Enter a valid phone number\n");
-//                         }
-//                         searchbymobno(mob_num);
-//                         break;
-//                     }
-//                     case 3:
-//                     {
-//                         char roll_num[10];
-//                         printf("Enter the Roll no. : ");
-//                         scanf("%s", &roll_num);
-//                         getchar();
-//                         strupr(roll_num);
-//                         searchbyrollno(roll_num);
-//                         break;
-//                     }
-//                     default:
-//                         printf("Enter Correct number :");
-//                         goto goto2;
-//                         break;
-//                     }
-//                 } while (choice2 != 0);
-//                 break;
-//             }
-//             case 6:
-//             {
-//                 do
-//                 {
-//                     printf("\nStudent-Group Menu\n");
-//                     printf("0. Exit\n");
-//                     printf("1. Group by branch.\n");
-//                     printf("2. Group by state.\n");
-//                     printf("3. Group by gender.\n");
-//                     printf("Enter your choice(pls enter the number): ");
-//                 goto3:
-//                     scanf("%d", &choice2);
-//                     getchar();
-
-//                     switch (choice2)
-//                     {
-//                     case 0:
-//                         printf("Exiting student-group\n");
-//                         sleep(1);
-//                         break;
-//                     case 1:
-//                     {
-//                         char stud_branch[4];
-//                         int choice;
-//                         printf("Enter the branch:\n");
-//                         printf("1 for CE.\n2 for CSE.\n3 for EE.\n4 for MM.\n5 for EC.\n6 for ME.\n");
-//                     here3:
-//                         scanf("%d", &choice);
-//                         switch (choice)
-//                         {
-//                         case 1:
-//                             strcpy(stud_branch, "CE");
-//                             break;
-//                         case 2:
-//                             strcpy(stud_branch, "CSE");
-//                             break;
-//                         case 3:
-//                             strcpy(stud_branch, "EE");
-//                             break;
-//                         case 4:
-//                             strcpy(stud_branch, "MM");
-//                             break;
-//                         case 5:
-//                             strcpy(stud_branch, "EC");
-//                             break;
-//                         case 6:
-//                             strcpy(stud_branch, "ME");
-//                             break;
-//                         default:
-//                             printf("Enter correct number:");
-//                             goto here3;
-//                             break;
-//                         }
-//                         groupbybranch(stud_branch);
-//                         break;
-//                     }
-//                     case 2:
-//                     {
-//                         char stud_state[15];
-//                         printf("Enter the state : ");
-//                         scanf("%s", &stud_state);
-//                         strupr(stud_state);
-//                         groupbystate(stud_state);
-//                         break;
-//                     }
-//                     case 3:
-//                     {
-//                         char gender;
-//                         char stud_gender[10];
-//                         printf("Enter your gender.\n");
-//                     there:
-//                         printf("M for male and F for female.\n");
-//                         scanf("%c", &gender);
-//                         getchar();
-//                         if (gender == 'M' || gender == 'm')
-//                         {
-//                             strcpy(stud_gender, "MALE");
-//                         }
-//                         else if (gender == 'F' || gender == 'f')
-//                         {
-//                             strcpy(stud_gender, "FEMALE");
-//                         }
-//                         else
-//                         {
-//                             printf("Enter correct gender : ");
-//                             goto there;
-//                         }
-//                         groupbygender(stud_gender);
-//                         break;
-//                     }
-//                     default:
-//                         printf("Enter Correct number :");
-//                         goto goto2;
-//                         break;
-//                     }
-//                 } while (choice2 != 0);
-//                 break;
-//             }
-//             case 7:
-//                 givefeedback();
-//                 break;
-//             case 8:
-//                 fees();
-//                 break;
-//             default:
-//                 printf("Enter Correct number :");
-//                 goto gotohere;
-//                 break;
-//             }
-//             sleep(1);
-//         } while (choice != 0);
-//         break;
-//     }
-//     case 2:
-//         teachers_main();
-//         break;
-//     default:
-//         printf("Enter Correct number :");
-//         goto goto1;
-//         break;
-//     }
-//     return ;
-}
