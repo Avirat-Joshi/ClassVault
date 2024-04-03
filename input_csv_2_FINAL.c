@@ -14,7 +14,7 @@ struct students
     char dateofBirth[11];
     char bloodgroup[4];
     char category[10];
-    char branch[20];
+    char branch[3];
     char state[25];
     char address[60];
     char email[30];
@@ -156,7 +156,6 @@ void addstudent()
     if (numstudents < max_students)
     {
         printf("Enter your name: ");
-        getchar();
         gets(student[numstudents].name);
         strupr(student[numstudents].name);
 
@@ -273,7 +272,7 @@ void addstudent()
 
         int choice_br;
         printf("Enter your branch:\n");
-        printf("1.CE\n2.CSE\n3.EE\n4.MM\n5.EC\n6.ME\n");
+        printf("1.CE\n2.CS\n3.EE\n4.MM\n5.EC\n6.ME\n");
     here4:
         scanf("%d", &choice_br);
         switch (choice_br)
@@ -282,7 +281,7 @@ void addstudent()
             strcpy(student[numstudents].branch, "CE");
             break;
         case 2:
-            strcpy(student[numstudents].branch, "CSE");
+            strcpy(student[numstudents].branch, "CS");
             break;
         case 3:
             strcpy(student[numstudents].branch, "EE");
@@ -921,4 +920,3 @@ void showfeedback()
     }
     fclose(feedback);
 }
-
