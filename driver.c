@@ -7,12 +7,12 @@
 struct s_credentials
 {
     char rollno[10];
-    char password[7];
+    char password[20];
 };
 struct e_credentials
 {
     char employeeID[20];
-    char password[7];
+    char password[20];
 };
 struct s_credentials sc[5000];
 struct e_credentials ec[5000];
