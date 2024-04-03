@@ -42,6 +42,7 @@ void get_existing_credential_data()
 void check_existence()
 {
     printf("Enter roll number: ");
+    fflush(stdin);
     gets(stud_cred_password_change.rollno);
     for (i1 = 0; i1 < number1; i1++)
     {
