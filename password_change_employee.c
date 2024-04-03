@@ -41,6 +41,7 @@ void get_existing_employee_credential_data()
 void check_existence_emp()
 {
     printf("Enter Employee ID: ");
+    fflush(stdin);
     gets(emp_cred_password_change.employeeID);
     for (i2 = 0; i2 < number2; i2++)
     {
@@ -54,7 +55,8 @@ void check_existence_emp()
 }
 void get_password_emp()
 {
-    printf("Enter old password ");
+    printf("Enter old password: ");
+    fflush(stdin);
     gets(emp_cred_password_change.old_password);
     check_password_emp();
 }
@@ -74,9 +76,9 @@ void reset_password_emp()
 {
     char new_emp[50];
 re_enter_emp:
-    printf("Enter new password ");
+    printf("Enter new password: ");
     gets(emp_cred_password_change.new_password);
-    printf("Re-Enter password");
+    printf("Re-Enter password: ");
     gets(new_emp);
     if (strcmp(new_emp, emp_cred_password_change.new_password) == 0)
     {
