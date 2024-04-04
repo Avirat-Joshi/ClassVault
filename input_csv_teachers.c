@@ -113,7 +113,7 @@ void addteacher()
         scanf("%d", &teacher[numteachers].age);
 
         printf("Enter your state: ");
-        scanf("%s", teacher[numteachers].state);
+        gets(teacher[numteachers].state);
         strupr(teacher[numteachers].state);
         getchar();
 
