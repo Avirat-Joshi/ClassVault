@@ -110,11 +110,11 @@ void get_credentials()
 }
 void get_details_from_user()
 {
-    printf("Welcome to Branch change forum\n ");
+    printf("Welcome to Branch change forum\n");
     int choice = 1;
 again:
     printf("Do you want to apply for branch change\n");
-    printf("1. Yes\n 2. No\n");
+    printf("1. Yes\n2. No\n");
     scanf("%d", &choice);
     switch (choice)
     {
@@ -127,7 +127,7 @@ again:
     case 2:
         break;
     default:
-        printf("Wrong input, please retry ");
+        printf("Wrong input, please retry \n");
         goto again;
     }
 }
@@ -151,10 +151,10 @@ void get_current_branch()
     }
     if (student_branch_change[i].cgpa < 8.5)
     {
-        printf("Minimum CG requirement not met ");
+        printf("Minimum CG requirement not met \n");
         return;
     }
-    printf("Current branch is %s", student_branch_change[i].branch);
+    printf("Current branch is %s\n", student_branch_change[i].branch);
     strcpy(depC_details.current_branch, student_branch_change[i].branch);
     strcpy(depC_details.approve, "NOT YET");
     depC_details.cgpa = student_branch_change[i].cgpa;
@@ -351,7 +351,6 @@ void get_depC_student_data()
         temp++;
     }
     fclose(file5);
-    printf("Number of branch change :%d\n", temp);
     number_branch_change_students = temp;
     calculate_top_1_percent();
     allot_depC_to_top1perc();
@@ -635,7 +634,7 @@ void update_data()
     {
         perror("Error opening file for writing\n");
         return;
-    }
+    }   
     for (int i = 0; i < numstudents1; i++)
     {
         char temp1[12], temp2[10];
@@ -653,6 +652,8 @@ void branch_change_student_main()
 }
 void branch_change_admin_verify_main()
 {
+    get_existing_student_details();
+    get_credentials();
     branch_change_admin_verify();
     show_result();
 }
