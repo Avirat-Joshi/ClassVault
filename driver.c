@@ -38,6 +38,7 @@ int s_authenticate(char *str)
     fclose(file_s2s);
     printf("Enter password: ");
     char temp_pass[7];
+here:
     fflush(stdin);
     gets(temp_pass);
     for (int i = 0; i < number_student_s; i++)
@@ -51,7 +52,8 @@ int s_authenticate(char *str)
             else
             {
                 printf("Wrong password\n ");
-                return 0;
+                printf("Enter Corect password : ");
+                goto here;
             }
         }
     }
@@ -78,9 +80,9 @@ int e_authenticate(char *str)
     }
     fclose(file_e2e);
     printf("Enter password: ");
-    fflush(stdin);
     char temp_pass[7];
 here:
+    fflush(stdin);
     gets(temp_pass);
     for (int i = 0; i < number_employee_e; i++)
         if (strcmp(str, ec[i].employeeID) == 0)
@@ -89,7 +91,7 @@ here:
                 return 1;
             else
             {
-                printf("Wrong password\n ");
+                printf("Wrong password\n");
                 printf("Enter Corect password : ");
                 goto here;
             }
@@ -110,7 +112,7 @@ int main()
     int login = 0;
     char roll[10];
     char empID[10];
-    printf("Use Classvault as a :\n1. Student\n2. Teacher\n");
+    printf("Use Classvalue as a :\n1. Student\n2. Teacher\n");
 goto1:
     scanf("%d", &login);
 
