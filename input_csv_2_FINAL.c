@@ -164,7 +164,7 @@ void addstudent()
     here0:
         scanf("%s", student[numstudents].rollno);
         strupr(student[numstudents].rollno);
-        getchar();
+        fflush(stdin);
         int index = -1;
         for (int i = 0; i < numstudents; i++)
         {
@@ -184,7 +184,7 @@ void addstudent()
     here:
         printf("M for male and F for female.\n");
         scanf("%c", &gender);
-        getchar();
+        fflush(stdin);
         if (gender == 'M' || gender == 'm')
         {
             strcpy((student[numstudents].gender), "MALE");
@@ -201,7 +201,7 @@ void addstudent()
 
         printf("Enter your date of birth(dd/mm/yyyy) : ");
         scanf("%s", student[numstudents].dateofBirth);
-        getchar();
+        fflush(stdin);
 
         int choice_bg;
         printf("Enter your blood group :\n");
@@ -305,20 +305,20 @@ void addstudent()
         printf("Enter your state: ");
         scanf("%s", student[numstudents].state);
         strupr(student[numstudents].state);
-        getchar();
+        fflush(stdin);
 
         printf("Enter your Address: ");
         scanf("%s", student[numstudents].address);
         strupr(student[numstudents].address);
-        getchar();
+        fflush(stdin);
 
         printf("Enter your E-mail ID : ");
         scanf("%s", student[numstudents].email);
-        getchar();
+        fflush(stdin);
 
         printf("Enter your Annual Income : ");
         scanf("%d", &student[numstudents].annualincome);
-        getchar();
+        fflush(stdin);
 
         printf("Enter your mobile no.: ");
         while (1)
@@ -380,7 +380,7 @@ herechoice:
     {
     case 1:
         printf("Enter your name: ");
-        getchar();
+        fflush(stdin);
         gets(student[edit_index].name);
         strupr(student[edit_index].name);
         break;
@@ -390,7 +390,7 @@ herechoice:
         printf("Enter your roll number : ");
     here0:
         scanf("%s", student[edit_index].rollno);
-        getchar();
+        fflush(stdin);
         int index = 0;
         for (int i = 0; i < numstudents; i++)
         {
@@ -414,7 +414,7 @@ herechoice:
     here:
         printf("M for male and F for female.\n");
         scanf("%c", &gender);
-        getchar();
+        fflush(stdin);
         if (gender == 'M' || gender == 'm')
         {
             strcpy((student[edit_index].gender), "MALE");
@@ -435,7 +435,7 @@ herechoice:
     {
         printf("Enter your date of birth(dd/mm/yyyy) : ");
         scanf("%s", student[edit_index].dateofBirth);
-        getchar();
+        fflush(stdin);
         break;
     }
     case 5:
@@ -551,7 +551,7 @@ herechoice:
         printf("Enter your state: ");
         scanf("%s", student[edit_index].state);
         strupr(student[edit_index].state);
-        getchar();
+        fflush(stdin);
         break;
     }
     case 9:
@@ -559,21 +559,21 @@ herechoice:
         printf("Enter your Address: ");
         scanf("%s", student[edit_index].address);
         strupr(student[edit_index].address);
-        getchar();
+        fflush(stdin);
         break;
     }
     case 10:
     {
         printf("Enter your E-mail ID : ");
         scanf("%s", student[edit_index].email);
-        getchar();
+        fflush(stdin);
         break;
     }
     case 11:
     {
         printf("Enter your Annual Income : ");
         scanf("%d", &student[edit_index].annualincome);
-        getchar();
+        fflush(stdin);
         break;
     }
     case 12:
@@ -790,7 +790,7 @@ void Calculate_fees()
     int tutfee = 100000;
     int otherfee = 15000;
 
-    for (int i; i < numstudents; i++)
+    for (int i = 0; i < numstudents; i++)
     {
         if (strcmp(student[i].category, "PWD") == 0 || strcmp(student[i].category, "SC") == 0 || strcmp(student[i].category, "ST") == 0 || (student[i].annualincome < 100000))
         {
@@ -807,10 +807,7 @@ void Calculate_fees()
 
         student[i].totalfee = messfee + otherfee + student[i].tutionfee;
     }
-    for (int i = 0; i < numstudents; i++)
-    {
-        saveStudentToFile(&student[i]);
-    }
+    saveAllstudents();
 }
 void show_fees(char str[])
 {
@@ -871,7 +868,7 @@ void givefeedback()
     char teachername[20];
     char teacherid[10];
     printf("Enter the name of the employee :");
-    getchar();
+    fflush(stdin);
     gets(teachername);
     strupr(teachername);
     int index = -1;
@@ -903,7 +900,7 @@ void showfeedback()
     char teachername[20];
     char teacherid[10];
     printf("Enter the name of the employee :");
-    getchar();
+    fflush(stdin);
     gets(teachername);
     strupr(teachername);
     int index = -1;
