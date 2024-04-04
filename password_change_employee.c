@@ -43,6 +43,7 @@ void check_existence_emp()
     printf("Enter Employee ID: ");
     fflush(stdin);
     gets(emp_cred_password_change.employeeID);
+    strupr(emp_cred_password_change.employeeID);
     for (i2 = 0; i2 < number2; i2++)
     {
         if (strcmp(existing_emp_cred[i2].employeeID, emp_cred_password_change.employeeID) == 0)
