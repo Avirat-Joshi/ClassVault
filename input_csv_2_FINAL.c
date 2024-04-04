@@ -51,6 +51,7 @@ void groupbybranch(char str[]);
 void groupbystate(char str[]);
 void groupbygender(char str[]);
 void show_fees(char str[]);
+void assignCGPA();
 void Calculate_fees();
 void savefeedbacktoFile(struct feedbacks *stud_feedback);
 void loadfeedbackfromfile();
@@ -828,6 +829,21 @@ void show_fees(char str[])
     {
 
         printf("%-25s%-15s%-15s%-15d%-15d%-15d\n", student[index].name, student[index].rollno, student[index].branch, student[index].tutionfee, (messfee + otherfee), student[index].totalfee);
+    }
+}
+void assignCGPA()
+{
+    marks_main();
+    for (int i = 0; i < numstudents; i++)
+    {
+        for (int j = 0; j < numstudents; i++)
+        {
+            if (strcmp(student[i].rollno, mark[j].rollno) == 0)
+            {
+                student[i].cgpa = mark[j].cgpa;
+                break;
+            }
+        }
     }
 }
 void savefeedbacktoFile(struct feedbacks *stud_feedback)
