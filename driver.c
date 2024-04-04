@@ -110,7 +110,7 @@ int main()
     int login = 0;
     char roll[10];
     char empID[10];
-    printf("Use Classvalue as a :\n1. Student\n2. Teacher\n");
+    printf("Use Classvault as a :\n1. Student\n2. Teacher\n");
 goto1:
     scanf("%d", &login);
 
