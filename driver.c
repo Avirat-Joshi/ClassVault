@@ -102,7 +102,9 @@ int main()
     loaddatafromfile();
     loadfeedbackfromfile();
     loadteacherdatafromfile();
+    loaddata();
     Calculate_fees();
+    marks_main();
     assignCGPA();
     printf("Welcome to Classvault\n");
     int login = 0;
