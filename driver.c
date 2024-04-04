@@ -146,8 +146,8 @@ goto1:
                 {
                     char roll_num[10];
                     printf("Enter the Roll no. of the student you want to edit : ");
+                    fflush(stdin);
                     scanf("%s", &roll_num);
-                    getchar();
                     strupr(roll_num);
                     editstudent(roll_num);
                     break;
@@ -178,6 +178,7 @@ goto1:
         printf("Enter Employee ID:");
         fflush(stdin);
         gets(empID);
+        strupr(empID);
         if (e_authenticate(empID) == 1)
         {
 
@@ -379,7 +380,7 @@ goto1:
                         printf("Enter your choice(pls enter the number): ");
                     goto5:
                         scanf("%d", &choice2);
-                        getchar();
+                        fflush(stdin);
 
                         switch (choice2)
                         {
@@ -445,6 +446,7 @@ goto1:
                 }
                 case 7:
                 {
+                    marks_main();
                     view_marks_for_teacher();
                     break;
                 }
