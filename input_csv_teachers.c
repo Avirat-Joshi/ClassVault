@@ -8,7 +8,7 @@
 #define FILENAMETEACHERS "teachers.csv"
 struct teachers
 {
-    char name[20];
+    char name[50];
     char employeeID[10];
     char gender[10];
     int age;
