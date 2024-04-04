@@ -80,6 +80,7 @@ int e_authenticate(char *str)
     printf("Enter password: ");
     fflush(stdin);
     char temp_pass[7];
+here:
     gets(temp_pass);
     for (int i = 0; i < number_employee_e; i++)
         if (strcmp(str, ec[i].employeeID) == 0)
@@ -89,7 +90,8 @@ int e_authenticate(char *str)
             else
             {
                 printf("Wrong password\n ");
-                return 0;
+                printf("Enter Corect password : ");
+                goto here;
             }
         }
     return 0;
@@ -101,6 +103,7 @@ int main()
     loadfeedbackfromfile();
     loadteacherdatafromfile();
     Calculate_fees();
+    assignCGPA();
     printf("Welcome to Classvault\n");
     int login = 0;
     char roll[10];
