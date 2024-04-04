@@ -66,7 +66,7 @@ void addteacher()
 {
     if (numteachers < max_teachers)
     {
-        printf("Enter your name: ");
+        printf("Enter name: ");
         getchar();
         gets(teacher[numteachers].name);
         strupr(teacher[numteachers].name);
