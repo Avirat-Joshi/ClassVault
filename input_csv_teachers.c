@@ -73,8 +73,8 @@ void addteacher()
 
         printf("Enter your Employee ID : ");
     here0:
-        scanf("%s", teacher[numteachers].employeeID);
         fflush(stdin);
+        scanf("%s", teacher[numteachers].employeeID);
         int index = 0;
         for (int i = 0; i < numteachers; i++)
         {
@@ -94,8 +94,8 @@ void addteacher()
         printf("Enter your gender.\n");
     here:
         printf("M for male and F for female.\n");
-        scanf("%c", &gender);
         fflush(stdin);
+        scanf("%c", &gender);
         if (gender == 'M' || gender == 'm')
         {
             strcpy((teacher[numteachers].gender), "MALE");
@@ -110,16 +110,17 @@ void addteacher()
             goto here;
         }
         printf("Enter your age: ");
+        fflush(stdin);
         scanf("%d", &teacher[numteachers].age);
 
         printf("Enter your state: ");
+        fflush(stdin);
         gets(teacher[numteachers].state);
         strupr(teacher[numteachers].state);
-        fflush(stdin);
 
         printf("Enter your E-mail ID : ");
-        scanf("%s", teacher[numteachers].email);
         fflush(stdin);
+        scanf("%s", teacher[numteachers].email);
 
         printf("Enter your mobile no.: ");
         while (1)
