@@ -176,12 +176,12 @@ void sort_marks()
         int no_p = ceil(5 * numstudent_marks / 100);
         int no_f = numstudent_marks - no_ex - no_a - no_b - no_c - no_d - no_p;
         grade_array[0][sub] = temp[no_ex];
-        grade_array[1][sub] = temp[no_a];
-        grade_array[2][sub] = temp[no_b];
-        grade_array[3][sub] = temp[no_c];
-        grade_array[4][sub] = temp[no_d];
-        grade_array[5][sub] = temp[no_p];
-        grade_array[6][sub] = temp[no_f];
+        grade_array[1][sub] = temp[no_ex + no_a];
+        grade_array[2][sub] = temp[no_ex + no_a + no_b];
+        grade_array[3][sub] = temp[no_ex + no_a + no_b + no_c];
+        grade_array[4][sub] = temp[no_ex + no_a + no_b + no_c + no_d];
+        grade_array[5][sub] = temp[no_ex + no_a + no_b + no_c + no_d + no_p];
+        grade_array[6][sub] = temp[no_ex + no_a + no_b + no_c + no_d + no_p + no_f];
     }
 }
 
@@ -237,9 +237,10 @@ void assign_grade()
 }
 void view_marks_for_teacher()
 {
+    printf("%-10s%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", "Sr.no", "Roll no.", "Sub 1", "Sub 2", "Sub 3", "Sub 4", "Sub 5", "CGPA");
     for (int i = 0; i < numstudent_marks; i++)
     {
-        printf("%s,%d,%d,%d,%d,%d,%.2f\n", mark[i].rollno, mark[i].grade_weightage[0], mark[i].grade_weightage[1], mark[i].grade_weightage[2], mark[i].grade_weightage[3], mark[i].grade_weightage[4], mark[i].cgpa);
+        printf("%-8d :%-15s%-15d%-15d%-15d%-15d%-15d%-15.2f\n", i + 1, mark[i].rollno, mark[i].grade_weightage[0], mark[i].grade_weightage[1], mark[i].grade_weightage[2], mark[i].grade_weightage[3], mark[i].grade_weightage[4], mark[i].cgpa);
     }
 }
 void view_cgpa_for_student(char str[])
@@ -261,11 +262,11 @@ void view_cgpa_for_student(char str[])
 
 void marks_input_main()
 {
-set_credits();
-loaddata();
-input_marks();
-sort_marks();
-assign_grade();
+    set_credits();
+    loaddata();
+    input_marks();
+    sort_marks();
+    assign_grade();
 }
 void marks_main()
 {
@@ -273,5 +274,4 @@ void marks_main()
     loaddata();
     sort_marks();
     assign_grade();
-    return;
 }
