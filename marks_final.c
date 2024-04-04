@@ -271,7 +271,6 @@ void marks_input_main()
 void marks_main()
 {
     set_credits();
-    loaddata();
     sort_marks();
     assign_grade();
 }
