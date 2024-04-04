@@ -834,7 +834,6 @@ void show_fees(char str[])
 void assignCGPA()
 {
     marks_main();
-    int check = 0;
     for (int i = 0; i < numstudents; i++)
     {
         for (int j = 0; j < numstudents; j++)
@@ -842,7 +841,6 @@ void assignCGPA()
             if (strcmp(student[i].rollno, mark[j].rollno) == 0)
             {
                 student[i].cgpa = mark[j].cgpa;
-                check++;
                 break;
             }
         }
