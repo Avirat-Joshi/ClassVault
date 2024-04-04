@@ -391,7 +391,7 @@ goto1:
                         {
                             char stud_name[50];
                             printf("Enter the name : ");
-                            scanf("%s", &stud_name);
+                            gets(stud_name);
                             strupr(stud_name);
                             searchbyname(stud_name);
                             break;
@@ -478,7 +478,7 @@ goto1:
                             char stud_branch[4];
                             int choice;
                             printf("Enter the branch:\n");
-                            printf("1 for CE.\n2 for CSE.\n3 for EE.\n4 for MM.\n5 for EC.\n6 for ME.\n");
+                            printf("1 for CE.\n2 for CS.\n3 for EE.\n4 for MM.\n5 for EC.\n6 for ME.\n");
                         here3:
                             scanf("%d", &choice);
                             switch (choice)
@@ -487,7 +487,7 @@ goto1:
                                 strcpy(stud_branch, "CE");
                                 break;
                             case 2:
-                                strcpy(stud_branch, "CSE");
+                                strcpy(stud_branch, "CS");
                                 break;
                             case 3:
                                 strcpy(stud_branch, "EE");
@@ -513,7 +513,7 @@ goto1:
                         {
                             char stud_state[15];
                             printf("Enter the state : ");
-                            scanf("%s", &stud_state);
+                            gets(stud_state);
                             strupr(stud_state);
                             groupbystate(stud_state);
                             break;
