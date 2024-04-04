@@ -100,6 +100,7 @@ int main()
     loaddatafromfile();
     loadfeedbackfromfile();
     loadteacherdatafromfile();
+    Calculate_fees();
     printf("Welcome to Classvault\n");
     int login = 0;
     char roll[10];
@@ -155,7 +156,7 @@ goto1:
                     givefeedback();
                     break;
                 case 4:
-                    fees(roll);
+                    show_fees(roll);
                     break;
                 case 5:
                     branch_change_student_main();
@@ -228,9 +229,13 @@ goto1:
                             break;
                         case 1:
                             addteacher();
+                            password_generator_main();
+
                             break;
                         case 2:
                             addstudent();
+                            password_generator_main();
+
                             break;
                         default:
                             printf("Enter Correct number :");
