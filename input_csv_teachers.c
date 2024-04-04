@@ -165,20 +165,15 @@ void viewteacher()
 }
 void removeteacher()
 {
+    FILE *file = fopen(FILENAMETEACHERS, "w");
     viewteacher();
     if (numteachers == 0)
     {
         return;
     }
-x:
-    printf("Enter the S.no of the teacher to be removed\n");
-    FILE *file = fopen(FILENAMETEACHERS, "w");
     int remove;
+    printf("Enter the S.no of the teacher to be removed\n");
     scanf("%d", &remove);
-    if(remove<1 || remove>=numteachers){
-        printf("Invalid Input, Please retry\n");
-        goto x;
-    }
     for (int i = remove - 1; i < numteachers - 1; i++)
     {
         teacher[i] = teacher[i + 1];
@@ -194,16 +189,16 @@ x:
 void searchbyteachername(char str[])
 {
     int n = strlen(str);
-    int check =0;
+    int check = 0;
     for (int i = 0; i < numteachers; i++)
     {
-        if (strncmp(str, teacher[i].name,n) == 0)
+        if (strncmp(str, teacher[i].name, n) == 0)
         {
             printf("%-20s%-10s%-10s%-10d%-20s%-28s%-10lld\n", teacher[i].name, teacher[i].employeeID, teacher[i].gender, teacher[i].age, teacher[i].state, teacher[i].email, teacher[i].mobileno);
             check++;
         }
     }
-    if(check ==0)
+    if (check == 0)
     {
         printf("Teacher was not found.\n");
     }
