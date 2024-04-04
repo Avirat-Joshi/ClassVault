@@ -44,6 +44,7 @@ void check_existence()
     printf("Enter roll number: ");
     fflush(stdin);
     gets(stud_cred_password_change.rollno);
+    strupr(stud_cred_password_change.rollno);
     for (i1 = 0; i1 < number1; i1++)
     {
         if (strcmp(existing_stud_cred[i1].rollno, stud_cred_password_change.rollno) == 0)
@@ -53,7 +54,6 @@ void check_existence()
         }
     }
     printf("The roll number does not exist in the credentials database ");
-
 }
 void get_password()
 {
