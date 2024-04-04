@@ -516,7 +516,7 @@ herechoice:
     {
         int choice_br;
         printf("Enter your branch:\n");
-        printf("1.CE\n2.CSE\n3.EE\n4.MM\n5.EC\n6.ME\n");
+        printf("1.CE\n2.CS\n3.EE\n4.MM\n5.EC\n6.ME\n");
     here4:
         scanf("%d", &choice_br);
         switch (choice_br)
@@ -525,7 +525,7 @@ herechoice:
             strcpy(student[edit_index].branch, "CE");
             break;
         case 2:
-            strcpy(student[edit_index].branch, "CSE");
+            strcpy(student[edit_index].branch, "CS");
             break;
         case 3:
             strcpy(student[edit_index].branch, "EE");
