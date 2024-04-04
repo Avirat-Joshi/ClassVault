@@ -50,7 +50,8 @@ void searchbyrollno(char str[]);
 void groupbybranch(char str[]);
 void groupbystate(char str[]);
 void groupbygender(char str[]);
-void fees(char str[]);
+void show_fees(char str[]);
+void Calculate_fees();
 void savefeedbacktoFile(struct feedbacks *stud_feedback);
 void loadfeedbackfromfile();
 void givefeedback();
@@ -621,15 +622,14 @@ void viewstudent_for_student(char str[])
         }
         if (index != -1)
         {
-        printf("%-30s%-15s%-15s%-35s%-15s%-10s\n", "name", "roll no.", "branch", "E-Mail ID", "Gender", "CGPA");
+            printf("%-30s%-15s%-15s%-35s%-15s%-10s\n", "name", "roll no.", "branch", "E-Mail ID", "Gender", "CGPA");
             printf("%-30s%-15s%-15s%-35s%-15s%-10.2f\n\n", student[index].name, student[index].rollno, student[index].branch, student[index].email, student[index].gender, student[index].cgpa);
             printf("Contact Details:\n");
-            printf("Address:%s \n",student[index].address);
-            printf("Phone No.:%lld\n",student[index].mobileno);
+            printf("Address:%s \n", student[index].address);
+            printf("Phone No.:%lld\n", student[index].mobileno);
         }
         else
             printf("Student not found!");
-
     }
     else
         printf("No students to display\n");
@@ -784,7 +784,7 @@ void groupbygender(char str[])
         printf("%-30s%-15s%-15s%-35s%-15s\n", student[indices[i]].name, student[indices[i]].rollno, student[indices[i]].branch, student[indices[i]].email, student[indices[i]].gender);
     }
 }
-void fees(char str[])
+void Calculate_fees()
 {
     int messfee = 18000;
     int tutfee = 100000;
@@ -807,6 +807,16 @@ void fees(char str[])
 
         student[i].totalfee = messfee + otherfee + student[i].tutionfee;
     }
+    for (int i = 0; i < numstudents; i++)
+    {
+        saveStudentToFile(&student[i]);
+    }
+}
+void show_fees(char str[])
+{
+    int messfee = 18000;
+    int tutfee = 100000;
+    int otherfee = 15000;
     printf("%-25s%-15s%-15s%-15s%-15s%-15s\n", "name", "roll no.", "branch", "Tution Fee", "Mess+Other", "Total Fee");
     printf("\n");
 
