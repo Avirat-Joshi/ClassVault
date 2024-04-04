@@ -77,7 +77,7 @@ void get_existing_student_details()
         perror("Error in opening the file\n");
         return;
     }
-    while (fscanf(file, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%f,%d,%d\n", &student_branch_change[numstudents1].name, &student_branch_change[numstudents1].rollno, &student_branch_change[numstudents1].gender, &student_branch_change[numstudents1].dateofBirth,&student_branch_change[numstudents1].bloodgroup,&student_branch_change[numstudents1].category, &student_branch_change[numstudents1].branch, &student_branch_change[numstudents1].state,&student_branch_change[numstudents1].address, &student_branch_change[numstudents1].email,&student_branch_change[numstudents1].annualincome, &student_branch_change[numstudents1].mobileno,&student_branch_change[numstudents1].cgpa,&student_branch_change[numstudents1].totalfee,&student_branch_change[numstudents1].tutionfee) == 15)
+    while (fscanf(file, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%f,%d,%d\n", &student_branch_change[numstudents1].name, &student_branch_change[numstudents1].rollno, &student_branch_change[numstudents1].gender, &student_branch_change[numstudents1].dateofBirth, &student_branch_change[numstudents1].bloodgroup, &student_branch_change[numstudents1].category, &student_branch_change[numstudents1].branch, &student_branch_change[numstudents1].state, &student_branch_change[numstudents1].address, &student_branch_change[numstudents1].email, &student_branch_change[numstudents1].annualincome, &student_branch_change[numstudents1].mobileno, &student_branch_change[numstudents1].cgpa, &student_branch_change[numstudents1].totalfee, &student_branch_change[numstudents1].tutionfee) == 15)
     {
         numstudents1++;
         if (numstudents1 >= max_students)
@@ -85,7 +85,7 @@ void get_existing_student_details()
             break;
         }
     }
-    printf("Total students %d\n",numstudents1);
+    printf("Total students %d\n", numstudents1);
     fclose(file);
 }
 void get_credentials()
@@ -112,23 +112,24 @@ void get_details_from_user()
 {
     printf("Welcome to Branch change forum\n ");
     int choice = 1;
-    again:
-        printf("Do you want to apply for branch change\n");
-        printf("1. Yes\n 2.No\n");
-        scanf("%d", &choice);
-        switch (choice)
-        {
-        case 1:
-            printf("Enter roll number ");
-            scanf("%s", depC_details.rollno);
-            get_current_branch();
-            break;
-        case 2:
-            break;
-        default:
-            printf("Wrong input, please retry ");
-            goto again;
-        }
+again:
+    printf("Do you want to apply for branch change\n");
+    printf("1. Yes\n 2. No\n");
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 1:
+        printf("Enter roll number : ");
+        scanf("%s", depC_details.rollno);
+        strupr(depC_details.rollno);
+        get_current_branch();
+        break;
+    case 2:
+        break;
+    default:
+        printf("Wrong input, please retry ");
+        goto again;
+    }
 }
 int i;
 void get_current_branch()
@@ -161,7 +162,7 @@ void get_current_branch()
 }
 void ask_branch_choice()
 {
-    printf("Branches available are:\n1.CE\n2.CSE\n3.ECE\n4.EE\n5.ME\n6.MM\n");
+    printf("Branches available are:\n1.CE\n2.CS\n3.ECE\n4.EE\n5.ME\n6.MM\n");
 c1:
     printf("Enter branch choice number 1: ");
     scanf("%s", depC_details.branch_choice_number1);
@@ -208,12 +209,12 @@ void save_details_to_file()
     FILE *file3 = fopen("dep_c.csv", "a");
     if (file3 == NULL)
     {
-        perror("Error opening file for writing\n");
+        perror("Error opening file for writing.\n");
         return;
     }
     char temp1[10];
-    sprintf(temp1,"%f",depC_details.cgpa);
-    fprintf(file3, "%s,%s,%s,%s,%s,%s,%s,\n", depC_details.rollno,temp1, depC_details.branch_choice_number1, depC_details.branch_choice_number2, depC_details.branch_choice_number3, depC_details.current_branch, depC_details.approve);
+    sprintf(temp1, "%f", depC_details.cgpa);
+    fprintf(file3, "%s,%s,%s,%s,%s,%s,%s,\n", depC_details.rollno, temp1, depC_details.branch_choice_number1, depC_details.branch_choice_number2, depC_details.branch_choice_number3, depC_details.current_branch, depC_details.approve);
     fclose(file3);
 }
 void confirmation_choice()
@@ -344,14 +345,14 @@ void get_depC_student_data()
     }
     int temp = 0;
     char temporary[11];
-    while (fscanf(file5, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],\n", depC[temp].rollno, temporary, depC[temp].branch_choice_number1, depC[temp].branch_choice_number2, depC[temp].branch_choice_number3, depC[temp].current_branch, depC[temp].approve) ==7)
+    while (fscanf(file5, "%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],\n", depC[temp].rollno, temporary, depC[temp].branch_choice_number1, depC[temp].branch_choice_number2, depC[temp].branch_choice_number3, depC[temp].current_branch, depC[temp].approve) == 7)
     {
         depC[temp].cgpa = strtod(temporary, NULL);
         temp++;
     }
     fclose(file5);
     printf("Number of branch change :%d\n", temp);
-    number_branch_change_students=temp;
+    number_branch_change_students = temp;
     calculate_top_1_percent();
     allot_depC_to_top1perc();
     count_branch_wise_students();
@@ -369,7 +370,7 @@ void allot_depC_to_top1perc()
                 if (strcmp(student_branch_change[k].rollno, depC[j].rollno) == 0)
                 {
                     strcpy(student_branch_change[k].branch, depC[j].branch_choice_number1);
-                    strcpy(depC[j].current_branch,depC[j].branch_choice_number1);
+                    strcpy(depC[j].current_branch, depC[j].branch_choice_number1);
                 }
             }
         }
@@ -599,7 +600,7 @@ void allot_depC_to_remaining()
     }
     for (int k = 0; k < number_branch_change_students; k++)
     {
-        if (strcmp(depC[k].approve, "NOT YET")==0)
+        if (strcmp(depC[k].approve, "NOT YET") == 0)
             strcpy(depC[k].approve, "NO");
     }
     for (int k = 0; k < number_branch_change_students; k++)
@@ -637,9 +638,9 @@ void update_data()
     }
     for (int i = 0; i < numstudents1; i++)
     {
-        char temp1[12],temp2[10];
-        sprintf(temp1,"%lld",student_branch_change[i].mobileno);
-        sprintf(temp2,"%f",student_branch_change[i].cgpa);
+        char temp1[12], temp2[10];
+        sprintf(temp1, "%lld", student_branch_change[i].mobileno);
+        sprintf(temp2, "%f", student_branch_change[i].cgpa);
         fprintf(file, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d,%lld,%f,%d,%d\n", student_branch_change[i].name, student_branch_change[i].rollno, student_branch_change[i].gender, student_branch_change[i].dateofBirth, student_branch_change[i].bloodgroup, student_branch_change[i].category, student_branch_change[i].branch, student_branch_change[i].state, student_branch_change[i].address, student_branch_change[i].email, student_branch_change[i].annualincome, student_branch_change[i].mobileno, student_branch_change[i].cgpa, student_branch_change[i].totalfee, student_branch_change[i].tutionfee);
     }
     fclose(file);
