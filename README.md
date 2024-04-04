@@ -1,22 +1,22 @@
 # CAPSTONE PROJECT ::: ClassVault
 
-This is our final capstone project of our first year PDS LAB
+This is the final capstone project of our first-year PDS LAB
 We have tried to make a student database management system 
 using C language.
 
 ## Appendix :: Information
-The motivation behind making a database management system is to learn about data base management systems, file handling, algorithms and various data structures. 
+The motivation behind making a database management system is to learn about database management systems, file handling, algorithms, and various data structures. 
 The aim is to effectively organise, display, edit and process data. 
-This system can be integrated with other softwares used such as the learning management systems, scheduling software or administration tools.  
+This system can be integrated with other software used such as the learning management systems, scheduling software, or administration tools.  
 
 ## KEY FEATURES
 Some key features which are part of the project are listed here:
 - Merge Sort
-  Instead of using the standard bubble sort algorithms, merge sort was used which decreased the worst case time complexity from O(n) to O(n * log n)
+  Instead of using the standard bubble sort algorithms, merge sort was used which decreased the worst-case time complexity from O(n^2) to O(n * log n)
 - Random Password Generator
-  Since users require a password to access the system, assigning passwords at random was required. For this we used the time() function from header file time.h, rand() function from header file stdlib.h and srand() function.
+  Since users require a password to access the system, assigning passwords at random was required. For this, we used the time() function from the header file time.h, rand() function from header file stdlib.h and srand() function.
 - Use of .CSV(Comma separated values) file
-  This format was choosen over .txt and other database management formats due to its simplicity, portability, and ease of integration.
+  This format was chosen over .txt and other database management formats due to its simplicity, portability, and ease of integration.
 
 ## Roadmap
 We distributed the subparts of our code within our(group of 4)
@@ -26,7 +26,7 @@ We distributed the subparts of our code within our(group of 4)
 - password change
 - CGPA calculation
 - sort data
-- search by various parameters
+- Search by various parameters
 - branch change
 - fee details
 - feedback system
@@ -34,7 +34,7 @@ We distributed the subparts of our code within our(group of 4)
 ## Tech
 **-Use of C language only**
 - using VScode
-- using gcc MINGW compiler
+- using gcc MinGW compiler
 
 ## 🔗 Github Links
 - https://github.com/Avirat-Joshi
@@ -45,8 +45,8 @@ We distributed the subparts of our code within our(group of 4)
 ## Deployment
 
 To deploy this project run
-- download the complete github repository
-- extract all files in same folder
+- download the complete GitHub repository
+- extract all files in the same folder
 - open a new terminal and run the code 
 
 ```bash
