@@ -845,6 +845,7 @@ void assignCGPA()
             }
         }
     }
+    saveAllstudents();
 }
 void savefeedbacktoFile(struct feedbacks *stud_feedback)
 {
