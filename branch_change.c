@@ -266,7 +266,7 @@ void confirmation_choice()
     }
     save_details_to_file();
 }
-//used merge sort to sort the array of marks
+//used merge funciton for merge sort
 void merge1(float arr[], int l, int m, int r)
 {
     int i, j, k;
@@ -307,6 +307,7 @@ void merge1(float arr[], int l, int m, int r)
         k++;
     }
 }
+//merge function to sort marks
 void merge_sort(float arr[], int l, int r)
 {
     if (l < r)
@@ -317,6 +318,7 @@ void merge_sort(float arr[], int l, int r)
         merge1(arr, l, m, r);
     }
 }
+//calculate cgpa required for top 1% student
 void calculate_top_1_percent()
 {
     float cg[numstudents1];
