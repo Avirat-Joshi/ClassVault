@@ -66,6 +66,8 @@ int numteachers1 = 0;
 int number_employee = 0;
 const int password_length = 6;
 char password1[7];
+/*generates a random string of various characters defined in charset[].
+Uses the rand() function to generates a pseudo random number and srand() function to seed the random number generator and set its initial state*/
 char *random_generate()
 {
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@";
@@ -79,6 +81,7 @@ char *random_generate()
     }
     return password1;
 }
+//generates a password for every student
 void password_generator_student()
 {
     for (int i = 0; i < numstudents_password_generator; i++)
@@ -88,6 +91,8 @@ void password_generator_student()
         strcpy(stud_cred[i].rollno, student1[i].rollno);
     }
 }
+
+//generates a password for every employee
 void password_generator_employee()
 {
     for (int i = 0; i < numteachers1; i++)
@@ -97,6 +102,8 @@ void password_generator_employee()
         strcpy(emp_cred[i].employeeID, teacher_password_generator[i].employeeID);
     }
 }
+//checks if student credentials exist
+//if already existing then they are not updated
 int check_student(char *to_be_checkeds)
 {
     for (int i = 0; i < number_student; i++)
@@ -106,6 +113,8 @@ int check_student(char *to_be_checkeds)
     }
     return 1;
 }
+//checks if employee credentials exist
+//if already existing then they are not updated
 int check_employee(char *to_be_checkedt)
 {
     for (int i = 0; i < number_employee; i++)
@@ -117,6 +126,7 @@ int check_employee(char *to_be_checkedt)
     }
     return 1;
 }
+//gets existing credentials data from credentials_student.csv
 void get_credentials_student()
 {
     FILE *file_s1 = fopen("credentials_student.csv", "a");
@@ -137,6 +147,7 @@ void get_credentials_student()
     }
     fclose(file_s2);
 }
+//gets existing credentials data from credentials_employee.csv
 void get_credentials_employee()
 {
     FILE *file_e1 = fopen("credentials_employee.csv", "a");
@@ -157,6 +168,7 @@ void get_credentials_employee()
     }
     fclose(file_e2);
 }
+//fetches existing credential data from students.csv
 void get_data_student()
 {
     FILE *files1 = fopen("students.csv", "a");
@@ -177,6 +189,7 @@ void get_data_student()
         }
     } 
 }
+//fetches existing credential data from teachers.csv
 void get_data_employee()
 {
     FILE *filet1 = fopen("teachers.csv", "a");
@@ -198,6 +211,7 @@ void get_data_employee()
     }
     fclose(filet);
 }
+//prints student credentials data to credentials_student.csv
 void print_data_student()
 {
     FILE *files2 = fopen("credentials_student.csv", "a");
@@ -211,6 +225,7 @@ void print_data_student()
             fprintf(files2, "%s,%s,\n", stud_cred[i].rollno, stud_cred[i].password);
     fclose(files2);
 }
+//prints employee credentials data to credentials_employee.csv
 void print_data_employee()
 {
     FILE *filet2 = fopen("credentials_employee.csv", "a");
@@ -224,16 +239,19 @@ void print_data_employee()
             fprintf(filet2, "%s,%s,\n", emp_cred[i].employeeID, emp_cred[i].password);
     fclose(filet2);
 }
+//function to call from driver.c
 void password_generator_main()
 {
     get_credentials_student();
     get_data_student();
-    srand((unsigned int)time(NULL));
+    srand((unsigned int)time(NULL)); //sets seed value for random number generator
+    //time(NULL) returns the time in seconds elapsed since UNIX EPOCH i.e. January 1,1970
     password_generator_student();
     print_data_student();
     get_credentials_employee();
     get_data_employee();
     srand((unsigned int)time(NULL));
+    //srand() functions are called in main to 
     password_generator_employee();
     print_data_employee();
 
