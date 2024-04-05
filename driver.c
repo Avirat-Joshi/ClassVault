@@ -16,6 +16,8 @@ struct e_credentials
 };
 struct s_credentials sc[5000];
 struct e_credentials ec[5000];
+
+// authenticate student credentials from credentials_students.csv file
 int s_authenticate(char *str)
 {
     int number_student_s = 0;
@@ -59,6 +61,7 @@ here:
     }
     return 0;
 }
+// authenticate employee credentials from credentials_employee.csv file
 int e_authenticate(char *str)
 {
     int number_employee_e = 0;
@@ -100,14 +103,14 @@ here:
 }
 int main()
 {
-    password_generator_main();
-    loaddatafromfile();
-    loadfeedbackfromfile();
-    loadteacherdatafromfile();
-    loaddata();
-    Calculate_fees();
-    marks_main();
-    assignCGPA();
+    password_generator_main(); // generates and passwords
+    loaddatafromfile();        // loading students data from file
+    loadfeedbackfromfile();    // loading feedback data from file
+    loadteacherdatafromfile(); // loading teachers data from file
+    loaddata();                // loading student's marks from file
+    Calculate_fees();          // calculating and assigning payable amount of fees
+    marks_main();              // assigning grades to students
+    assignCGPA();              // assigning CGPA to students
     printf("Welcome to Classvault\n");
     int login = 0;
     char roll[10];
