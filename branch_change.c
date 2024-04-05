@@ -90,7 +90,7 @@ void get_existing_student_details()
 }
 void get_credentials()
 {
-    //Extracts credintials of existing students from credentials_student.csv file
+    //Extracts credentials of existing students from credentials_student.csv file
     FILE *file_1 = fopen("credentials_student.csv", "a");
     fclose(file_1);
     FILE *file_2 = fopen("credentials_student.csv", "r");
@@ -266,7 +266,7 @@ void confirmation_choice()
     }
     save_details_to_file();
 }
-//used merge funciton for merge sort
+//merge functon for merge sort
 void merge1(float arr[], int l, int m, int r)
 {
     int i, j, k;
@@ -307,7 +307,7 @@ void merge1(float arr[], int l, int m, int r)
         k++;
     }
 }
-//merge function to sort marks
+//merge sort
 void merge_sort(float arr[], int l, int r)
 {
     if (l < r)
