@@ -39,7 +39,7 @@ We distributed the subparts of our code within our(group of 4)
 ## Database
 - We have used a student database of our batch for demo purposes.
 - The teacher database on the other hand is a list of some of our professors.
-- The address of students is a randomly generated city out of 16 cities.
+- The address of students is a randomly generated city out of 16 cities so it may or may not match with the state.
 - The marks in marks.csv are randomly generated and do not belong to any student.
 
 ## 🔗 Github Links
@@ -64,13 +64,13 @@ To deploy this project run
 
 - Initial User Interface:: <br><br>
 
-For students
-  ![Screenshot 2024-04-04 211727](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/a12f463e-6a79-4a43-a92f-6d94a33ab63a)
+   For students
+     ![Screenshot 2024-04-04 211727](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/a12f463e-6a79-4a43-a92f-6d94a33ab63a)
 
-For teachers
-  ![Screenshot 2024-04-04 211956](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/f5fa847f-8908-47d9-ac50-8eee774eb1e6)
+   For teachers
+   ![Screenshot 2024-04-04 211956](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/f5fa847f-8908-47d9-ac50-8eee774eb1e6)
 
-View Students
+- View Students::
   ![image](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/c1155a5b-bed8-4d6c-93db-dd0e41b8efbb)
 
 
