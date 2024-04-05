@@ -663,6 +663,7 @@ void viewstudent_for_student(char str[])
 // view student for teachers where teachers can see all student's details
 void viewstudent_for_teacher()
 {
+    sortstudent(0, numstudents - 1); // sorting students before displaying
     if (numstudents > 0)
     {
         printf("\nStudentslist\n");
@@ -702,7 +703,7 @@ void removestudent()
     }
     fclose(file);
 }
-//search student by name
+// search student by name
 void searchbyname(char str[])
 {
     int n = strlen(str);
@@ -721,7 +722,7 @@ void searchbyname(char str[])
     }
 }
 
-//search student by mobile number
+// search student by mobile number
 void searchbymobno(long long int number)
 {
     int index = -1;
@@ -743,7 +744,7 @@ void searchbymobno(long long int number)
     }
 }
 
-//search student by roll number
+// search student by roll number
 void searchbyrollno(char str[])
 {
     int n = strlen(str);
@@ -762,7 +763,7 @@ void searchbyrollno(char str[])
     }
 }
 
-//group students by branch
+// group students by branch
 void groupbybranch(char str[])
 {
     int indices[numstudents];
@@ -781,7 +782,7 @@ void groupbybranch(char str[])
     }
 }
 
-//group student by state
+// group student by state
 void groupbystate(char str[])
 {
     int indices[numstudents];
@@ -800,7 +801,7 @@ void groupbystate(char str[])
     }
 }
 
-//group students by gender
+// group students by gender
 void groupbygender(char str[])
 {
     int indices[numstudents];
@@ -819,7 +820,7 @@ void groupbygender(char str[])
     }
 }
 
-//calculating total fees, including fee remission
+// calculating total fees, including fee remission
 void Calculate_fees()
 {
     int messfee = 18000;
@@ -846,7 +847,7 @@ void Calculate_fees()
     saveAllstudents();
 }
 
-//displaying payable amount of fees
+// displaying payable amount of fees
 void show_fees(char str[])
 {
     int messfee = 18000;
@@ -870,7 +871,7 @@ void show_fees(char str[])
     }
 }
 
-//assigning CGPA to students
+// assigning CGPA to students
 void assignCGPA()
 {
     marks_main();
@@ -888,7 +889,7 @@ void assignCGPA()
     saveAllstudents();
 }
 
-//saving feedback to a CSV file
+// saving feedback to a CSV file
 void savefeedbacktoFile(struct feedbacks *stud_feedback)
 {
     FILE *file = fopen(FILENAMEFEEDBACK, "a");
@@ -900,7 +901,7 @@ void savefeedbacktoFile(struct feedbacks *stud_feedback)
     fprintf(file, "%s,%s\n", stud_feedback->employeeid, stud_feedback->feedback);
 }
 
-//loading data from a CSV file
+// loading data from a CSV file
 void loadfeedbackfromfile()
 {
     FILE *file1 = fopen(FILENAMEFEEDBACK, "a");
@@ -922,7 +923,7 @@ void loadfeedbackfromfile()
     fclose(file);
 }
 
-//function for students to give feedback
+// function for students to give feedback
 void givefeedback()
 {
     FILE *feedbackptr = fopen(FILENAMEFEEDBACK, "a");
@@ -955,7 +956,7 @@ void givefeedback()
         printf("Employee not found!.\n");
     fclose(feedbackptr);
 }
-//showing feedbacks to teacher
+// showing feedbacks to teacher
 void showfeedback()
 {
     FILE *feedback = fopen(FILENAMEFEEDBACK, "a");
