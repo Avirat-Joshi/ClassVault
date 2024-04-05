@@ -69,6 +69,7 @@ void update_data();
 void show_result();
 void get_existing_student_details()
 {
+    //Extracts data of existing students from students.csv file
     FILE *file1 = fopen(FILENAME, "a");
     fclose(file1);
     FILE *file = fopen(FILENAME, "r");
@@ -85,11 +86,11 @@ void get_existing_student_details()
             break;
         }
     }
-    printf("Total students %d\n", numstudents1);
     fclose(file);
 }
 void get_credentials()
 {
+    //Extracts credintials of existing students from credentials_student.csv file
     FILE *file_1 = fopen("credentials_student.csv", "a");
     fclose(file_1);
     FILE *file_2 = fopen("credentials_student.csv", "r");
@@ -110,6 +111,7 @@ void get_credentials()
 }
 void get_details_from_user()
 {
+    //Get details from user to proceed with branch change
     printf("Welcome to Branch change forum\n");
     int choice = 1;
 again:
@@ -144,6 +146,7 @@ void get_current_branch()
         if (index == 1)
             break;
     }
+    //checks if student is already there in database
     if (index != 1)
     {
         printf("Student not found in database \n");
@@ -151,6 +154,7 @@ void get_current_branch()
     }
     if (student_branch_change[i].cgpa < 8.5)
     {
+        //Minimum cg of 8.5 required for branch change
         printf("Minimum CG requirement not met \n");
         return;
     }
@@ -204,7 +208,7 @@ c3:
     }
     confirmation_choice();
 }
-void save_details_to_file()
+void save_details_to_file() //to depC.csv
 {
     FILE *file3 = fopen("dep_c.csv", "a");
     if (file3 == NULL)
@@ -262,6 +266,7 @@ void confirmation_choice()
     }
     save_details_to_file();
 }
+//used merge sort to sort the array of marks
 void merge1(float arr[], int l, int m, int r)
 {
     int i, j, k;
@@ -321,6 +326,7 @@ void calculate_top_1_percent()
     int temp = ceil(0.1 * numstudents1);
     top_1_percent_cg = cg[numstudents1 - temp - 1];
 }
+//Admin verification to initiate branch change
 void branch_change_admin_verify()
 {
     getchar();
@@ -357,6 +363,7 @@ void get_depC_student_data()
     count_branch_wise_students();
     allot_depC_to_remaining();
 }
+//Top 1% students are permitted without any restrictions
 void allot_depC_to_top1perc()
 {
     for (int j = 0; j < number_branch_change_students; j++)
@@ -408,6 +415,23 @@ void sort_depC_according_to_cg()
         }
     }
 }
+//to update depC.csv after branch change
+void update_depC_csv()
+{
+    FILE *file_c = fopen("dep_c.csv", "w");
+    if (file_c == NULL)
+    {
+        perror("Error opening file for writing.\n");
+        return;
+    }
+    char temp1[10];
+    for(int j=0;j<number_branch_change_students;j++)
+    {
+    sprintf(temp1, "%f", depC[j].cgpa);
+    fprintf(file_c, "%s,%s,%s,%s,%s,%s,%s,\n", depC[j].rollno, temp1, depC[j].branch_choice_number1, depC[j].branch_choice_number2, depC[j].branch_choice_number3, depC[j].current_branch, depC[j].approve);
+    }
+    fclose(file_c);
+}
 void allot_depC_to_remaining()
 {
     int max_cs = ceil(1.1 * num_cs);
@@ -417,6 +441,7 @@ void allot_depC_to_remaining()
     int max_mm = ceil(1.1 * num_mm);
     int max_me = ceil(1.1 * num_me);
     sort_depC_according_to_cg();
+    //Since sorting is already done according to cgpa only choices were to be checked in order
     for (int j = 0; j < number_branch_change_students; j++)
     {
         if (strcmp(depC[j].approve, "NOT YET") == 0)
@@ -613,8 +638,10 @@ void allot_depC_to_remaining()
             }
         }
     }
+    update_depC_csv();
     update_data();
 }
+//show results of branch change
 void show_result()
 {
     printf("Following students have been alloted new branches \n");
@@ -627,6 +654,7 @@ void show_result()
         }
     }
 }
+//update students.csv
 void update_data()
 {
     FILE *file = fopen("students.csv", "w");
@@ -643,13 +671,17 @@ void update_data()
         fprintf(file, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d,%lld,%f,%d,%d\n", student_branch_change[i].name, student_branch_change[i].rollno, student_branch_change[i].gender, student_branch_change[i].dateofBirth, student_branch_change[i].bloodgroup, student_branch_change[i].category, student_branch_change[i].branch, student_branch_change[i].state, student_branch_change[i].address, student_branch_change[i].email, student_branch_change[i].annualincome, student_branch_change[i].mobileno, student_branch_change[i].cgpa, student_branch_change[i].totalfee, student_branch_change[i].tutionfee);
     }
     fclose(file);
+
+    
 }
+//Call apply for branch change from driver.c
 void branch_change_student_main()
 {
     get_existing_student_details();
     get_credentials();
     get_details_from_user();
 }
+//Call initiate branch change from driver.c
 void branch_change_admin_verify_main()
 {
     get_existing_student_details();
