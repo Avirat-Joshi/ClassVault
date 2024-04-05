@@ -26,6 +26,9 @@ struct students
 };
 struct students student[max_students];
 int numstudents = 0;
+
+// made student array to store data of students and numstudent is a variable to keep track of student array
+
 struct feedbacks
 {
     char employeeid[10];
@@ -34,6 +37,7 @@ struct feedbacks
 struct feedbacks stud_feedback[max_feedbacks];
 int numfeedbacks = 0;
 
+// made stud_feedback array to store feedback given by students and numfeedback is a variable to keep track of stud_feedback array
 void saveStudentToFile(struct students *student);
 void saveAllstudents();
 void loaddatafromfile();
@@ -58,6 +62,7 @@ void loadfeedbackfromfile();
 void givefeedback();
 void showfeedback();
 
+// saving individual student to a CSV file
 void saveStudentToFile(struct students *student)
 {
     FILE *file = fopen(FILENAME, "a");
@@ -69,6 +74,8 @@ void saveStudentToFile(struct students *student)
     fprintf(file, "%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%d,%lld,%.2f,%d,%d\n", student->name, student->rollno, student->gender, student->dateofBirth, student->bloodgroup, student->category, student->branch, student->state, student->address, student->email, student->annualincome, student->mobileno, student->cgpa, student->totalfee, student->tutionfee);
     fclose(file);
 }
+
+// saving all students to a CSV file
 void saveAllstudents()
 {
     FILE *file = fopen(FILENAME, "w");
@@ -84,6 +91,8 @@ void saveAllstudents()
     }
     fclose(file);
 }
+
+// scaning and loading data in student array from CSV file
 void loaddatafromfile()
 {
     FILE *file1 = fopen(FILENAME, "a");
@@ -104,6 +113,8 @@ void loaddatafromfile()
     }
     fclose(file);
 }
+
+// merge function for mergesort
 void merge(int low, int mid, int high)
 {
     struct students student_temp[high + 1];
@@ -141,6 +152,8 @@ void merge(int low, int mid, int high)
         student[i] = student_temp[i];
     }
 }
+
+// sorting students using mergesort
 void sortstudent(int l, int r)
 {
     if (l < r)
@@ -153,6 +166,8 @@ void sortstudent(int l, int r)
     }
     saveAllstudents();
 }
+
+// adding student details in array
 void addstudent()
 {
     if (numstudents < max_students)
@@ -356,6 +371,8 @@ void addstudent()
     else
         printf("Student-list is Full.Cannot add more students.\n");
 }
+
+// edit student details
 void editstudent(char str[])
 {
     int edit_index = -1;
@@ -614,6 +631,8 @@ herechoice:
     printf("Student details updated successfully!\n");
     saveStudentToFile(&student[edit_index]);
 }
+
+// view student for student where student can only see his/her details
 void viewstudent_for_student(char str[])
 {
     if (numstudents > 0)
@@ -640,6 +659,8 @@ void viewstudent_for_student(char str[])
     else
         printf("No students to display\n");
 }
+
+// view student for teachers where teachers can see all student's details
 void viewstudent_for_teacher()
 {
     if (numstudents > 0)
@@ -656,6 +677,8 @@ void viewstudent_for_teacher()
     else
         printf("No students to display\n");
 }
+
+// remove student from database
 void removestudent()
 {
     viewstudent_for_teacher();
@@ -679,6 +702,7 @@ void removestudent()
     }
     fclose(file);
 }
+//search student by name
 void searchbyname(char str[])
 {
     int n = strlen(str);
@@ -696,6 +720,8 @@ void searchbyname(char str[])
         printf("Student was not found.\n");
     }
 }
+
+//search student by mobile number
 void searchbymobno(long long int number)
 {
     int index = -1;
@@ -716,6 +742,8 @@ void searchbymobno(long long int number)
         printf("Student was not found.\n");
     }
 }
+
+//search student by roll number
 void searchbyrollno(char str[])
 {
     int n = strlen(str);
@@ -733,6 +761,8 @@ void searchbyrollno(char str[])
         printf("Student was not found.\n");
     }
 }
+
+//group students by branch
 void groupbybranch(char str[])
 {
     int indices[numstudents];
@@ -750,6 +780,8 @@ void groupbybranch(char str[])
         printf("%-30s%-15s%-15s%-35s%-15s\n", student[indices[i]].name, student[indices[i]].rollno, student[indices[i]].branch, student[indices[i]].email, student[indices[i]].gender);
     }
 }
+
+//group student by state
 void groupbystate(char str[])
 {
     int indices[numstudents];
@@ -767,6 +799,8 @@ void groupbystate(char str[])
         printf("%-30s%-15s%-15s%-35s%-15s\n", student[indices[i]].name, student[indices[i]].rollno, student[indices[i]].branch, student[indices[i]].email, student[indices[i]].gender);
     }
 }
+
+//groupt students by gender
 void groupbygender(char str[])
 {
     int indices[numstudents];
@@ -784,6 +818,8 @@ void groupbygender(char str[])
         printf("%-30s%-15s%-15s%-35s%-15s\n", student[indices[i]].name, student[indices[i]].rollno, student[indices[i]].branch, student[indices[i]].email, student[indices[i]].gender);
     }
 }
+
+//calculating total fees, including fee remission
 void Calculate_fees()
 {
     int messfee = 18000;
@@ -809,6 +845,8 @@ void Calculate_fees()
     }
     saveAllstudents();
 }
+
+//displaying payable amount of fees
 void show_fees(char str[])
 {
     int messfee = 18000;
@@ -831,6 +869,8 @@ void show_fees(char str[])
         printf("%-25s%-15s%-15s%-15d%-15d%-15d\n", student[index].name, student[index].rollno, student[index].branch, student[index].tutionfee, (messfee + otherfee), student[index].totalfee);
     }
 }
+
+//assigning CGPA to students
 void assignCGPA()
 {
     marks_main();
@@ -847,6 +887,8 @@ void assignCGPA()
     }
     saveAllstudents();
 }
+
+//saving feedback to a CSV file
 void savefeedbacktoFile(struct feedbacks *stud_feedback)
 {
     FILE *file = fopen(FILENAMEFEEDBACK, "a");
@@ -857,6 +899,8 @@ void savefeedbacktoFile(struct feedbacks *stud_feedback)
     }
     fprintf(file, "%s,%s\n", stud_feedback->employeeid, stud_feedback->feedback);
 }
+
+//loading data from a CSV file
 void loadfeedbackfromfile()
 {
     FILE *file1 = fopen(FILENAMEFEEDBACK, "a");
@@ -877,9 +921,10 @@ void loadfeedbackfromfile()
     }
     fclose(file);
 }
+
+//function for students to give feedback
 void givefeedback()
 {
-    // authentication process
     FILE *feedbackptr = fopen(FILENAMEFEEDBACK, "a");
     char teachername[20];
     char teacherid[10];
@@ -910,6 +955,7 @@ void givefeedback()
         printf("Employee not found!.\n");
     fclose(feedbackptr);
 }
+//showing feedbacks to teacher
 void showfeedback()
 {
     FILE *feedback = fopen(FILENAMEFEEDBACK, "a");
