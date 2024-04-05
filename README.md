@@ -65,7 +65,8 @@ For teachers
   ![Screenshot 2024-04-04 211956](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/f5fa847f-8908-47d9-ac50-8eee774eb1e6)
 
 View Students
-  ![image](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/37d02540-2553-46fb-9ed8-03eb014d8434)
+  ![image](https://github.com/Avirat-Joshi/PDS_PROJECT/assets/157312327/c1155a5b-bed8-4d6c-93db-dd0e41b8efbb)
+
 
 ## Demo Video
 
