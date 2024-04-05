@@ -18,6 +18,7 @@ struct employee_credentials_password_change
 };
 struct employee_credentials_password_change emp_cred_password_change;
 struct employee_credentials_password_change existing_emp_cred[100];
+//loads existing employee credential data from credentials_employee.csv 
 void get_existing_employee_credential_data()
 {
     FILE *file_1_e = fopen("credentials_employee.csv", "a");
@@ -38,6 +39,7 @@ void get_existing_employee_credential_data()
     }
     fclose(file_2_e);
 }
+//checks if employee exists in database
 void check_existence_emp()
 {
     printf("Enter Employee ID: ");
@@ -54,6 +56,7 @@ void check_existence_emp()
     }
     printf("The roll number does not exist in the credentials database ");
 }
+//Gets old password from user before resetting 
 void get_password_emp()
 {
     printf("Enter old password: ");
@@ -61,6 +64,7 @@ void get_password_emp()
     gets(emp_cred_password_change.old_password);
     check_password_emp();
 }
+//Verifies if old password is same as that in credentials_employee.csv 
 void check_password_emp()
 {
     if (strcmp(existing_emp_cred[i2].old_password, emp_cred_password_change.old_password) == 0)
@@ -73,6 +77,7 @@ void check_password_emp()
         get_password_emp();
     }
 }
+//reset password function 
 void reset_password_emp()
 {
     char new_emp[50];
@@ -93,6 +98,7 @@ re_enter_emp:
         goto re_enter_emp;
     }
 }
+//prints changed and old employee passwords in credentials_employee.csv
 void print_data_emp()
 {
     FILE *file2 = fopen("credentials_employee.csv", "w");
@@ -105,6 +111,7 @@ void print_data_emp()
         fprintf(file2, "%s,%s,\n", existing_emp_cred[i2].employeeID, existing_emp_cred[i2].old_password);
     fclose(file2);
 }
+//function call for driver.c
 void password_change_employee_main()
 {
     get_existing_employee_credential_data();
