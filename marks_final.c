@@ -15,8 +15,12 @@ struct marks
 
 int numstudent_marks = 0;
 struct marks mark[maxstudents_marks];
+// made mark array to store marks of students and numstudent_marks is a variable to keep track of mark array
+
 float grade_array[7][5];
+// grade_array for storing bare minimum marks for a subject for a particular grade
 int credit[5];
+// for storing credits for 5 subject
 
 void merge_marks(float a[], int low, int mid, int high);
 void mergesort(float a[], int low, int high);
@@ -31,6 +35,7 @@ void view_cgpa_for_student(char str[]);
 void marks_input_main();
 void marks_main();
 
+// merge_marks function for merge sort
 void merge_marks(float a[], int low, int mid, int high)
 {
     float b[high + 1];
@@ -68,6 +73,8 @@ void merge_marks(float a[], int low, int mid, int high)
         a[i] = b[i];
     }
 }
+
+// implimenting merge sort
 void mergesort(float a[], int low, int high)
 {
     if (low < high)
@@ -78,7 +85,7 @@ void mergesort(float a[], int low, int high)
         merge_marks(a, low, mid, high);
     }
 }
-
+// loading data of marks and cgpa from a CSV file
 void loaddata()
 {
     FILE *file1 = fopen(filename, "a");
@@ -98,6 +105,8 @@ void loaddata()
         }
     }
 }
+
+// saving marks and cgpa to a CSV file
 void save_marks_details_to_file()
 {
     FILE *file = fopen(filename, "w");
@@ -106,6 +115,8 @@ void save_marks_details_to_file()
         fprintf(file, "%s,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f\n", mark[i].rollno, mark[i].marks[0], mark[i].marks[1], mark[i].marks[2], mark[i].marks[3], mark[i].marks[4], mark[i].cgpa);
     }
 }
+
+// seting credits value for each subject
 void set_credits()
 {
     credit[0] = 4;
@@ -115,6 +126,7 @@ void set_credits()
     credit[4] = 2;
 }
 
+// function to taking input of marks of a student
 void input_marks()
 {
     printf("Enter roll no.: ");
@@ -152,6 +164,7 @@ here1:
     save_marks_details_to_file();
 }
 
+// sorting marks and assigning values to grade_array
 void sort_marks()
 {
     for (int sub = 0; sub < 5; sub++)
@@ -184,7 +197,7 @@ void sort_marks()
         grade_array[6][sub] = temp[no_ex + no_a + no_b + no_c + no_d + no_p + no_f];
     }
 }
-
+// assigning grade for each subject to a student
 void assign_grade()
 {
     for (int sub = 0; sub < 5; sub++)
@@ -235,6 +248,8 @@ void assign_grade()
         }
     }
 }
+
+// view marks function for teacher where teacher can see all student's marks
 void view_marks_for_teacher()
 {
     printf("%-10s%-15s%-15s%-15s%-15s%-15s%-15s%-15s\n", "Sr.no", "Roll no.", "Sub 1", "Sub 2", "Sub 3", "Sub 4", "Sub 5", "CGPA");
@@ -243,6 +258,8 @@ void view_marks_for_teacher()
         printf("%-8d :%-15s%-15d%-15d%-15d%-15d%-15d%-15.2f\n", i + 1, mark[i].rollno, mark[i].grade_weightage[0], mark[i].grade_weightage[1], mark[i].grade_weightage[2], mark[i].grade_weightage[3], mark[i].grade_weightage[4], mark[i].cgpa);
     }
 }
+
+// view cgpa for student where student can only see his/her cgpa
 void view_cgpa_for_student(char str[])
 {
     int index = -1;
