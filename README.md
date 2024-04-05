@@ -6,8 +6,8 @@ using C language.
 
 ## Appendix :: Information
 The motivation behind making a database management system is to learn about database management systems, file handling, algorithms, and various data structures. 
-The aim is to effectively organise, display, edit and process data. 
-This system can be integrated with other software used such as the learning management systems, scheduling software, or administration tools.  
+The aim is to effectively organize, display, edit, and process data. 
+This system can be integrated with other software used such as learning management systems, scheduling software, or administration tools.  
 
 ## KEY FEATURES
 Some key features which are part of the project are listed here:
