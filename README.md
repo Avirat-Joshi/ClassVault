@@ -12,11 +12,11 @@ This system can be integrated with other software used such as learning manageme
 ## KEY FEATURES
 Some key features which are part of the project are listed here:
 - Merge Sort
-  Instead of using the standard bubble sort algorithms, merge sort was used which decreased the worst-case time complexity from O(n^2) to O(n * log n)
+   - Instead of using the standard bubble sort algorithms, merge sort was used which decreased the worst-case time complexity          from O(n^2) to O(n * log n)
 - Random Password Generator
-  Since users require a password to access the system, assigning passwords at random was required. For this, we used the time() function from the header file time.h, rand() function from header file stdlib.h and srand() function.
+    - Since users require a password to access the system, assigning passwords at random was required. For this, we used the time() function from the header file time.h, rand() function from header file stdlib.h and srand() function.
 - Use of .CSV(Comma separated values) file
-  This format was chosen over .txt and other database management formats due to its simplicity, portability, and ease of integration.
+  - This format was chosen over .txt and other database management formats due to its simplicity, portability, and ease of integration.
 
 ## Roadmap
 We distributed the subparts of our code within our(group of 4)
@@ -34,7 +34,7 @@ We distributed the subparts of our code within our(group of 4)
 ## Tech
 **-Use of C language only**
 - using VScode
-- using gcc MinGW compiler
+- using MINGW gcc 64 bit compiler
 
 ## Database
 - We have used a student database of our batch for demo purposes.
