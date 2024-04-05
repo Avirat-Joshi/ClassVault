@@ -800,7 +800,7 @@ void groupbystate(char str[])
     }
 }
 
-//groupt students by gender
+//group students by gender
 void groupbygender(char str[])
 {
     int indices[numstudents];
