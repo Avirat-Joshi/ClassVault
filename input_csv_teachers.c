@@ -20,6 +20,8 @@ struct teachers
 struct teachers teacher[max_teachers];
 int numteachers = 0;
 
+// made teacher array to store data of teacher and numteachers is a variable to keep track of teacher array
+
 void saveTeacherToFile(struct teachers *teacher);
 void loadteacherdatafromfile();
 void addteacher();
@@ -31,6 +33,7 @@ void groupbyteachergender(char str[]);
 void showfeedback();
 void teachers_main();
 
+// saving teacher to a CSV file
 void saveTeacherToFile(struct teachers *teacher)
 {
     FILE *file = fopen(FILENAMETEACHERS, "a");
@@ -42,6 +45,9 @@ void saveTeacherToFile(struct teachers *teacher)
     fprintf(file, "%s,%s,%s,%d,%s,%s,%lld\n", teacher->name, teacher->employeeID, teacher->gender, teacher->age, teacher->state, teacher->email, teacher->mobileno);
     fclose(file);
 }
+
+// scaning and loading data in teacher array from CSV file
+
 void loadteacherdatafromfile()
 {
     FILE *file1 = fopen(FILENAMETEACHERS, "a");
@@ -62,6 +68,8 @@ void loadteacherdatafromfile()
     }
     fclose(file);
 }
+
+// adding teacher details in array
 void addteacher()
 {
     if (numteachers < max_teachers)
@@ -148,6 +156,8 @@ void addteacher()
     else
         printf("Teachers-list is Full.Cannot add more teachers.\n");
 }
+
+// showing teacher's data
 void viewteacher()
 {
     if (numteachers > 0)
@@ -164,6 +174,8 @@ void viewteacher()
     else
         printf("No Teachers to display\n");
 }
+
+//remove teacher from database
 void removeteacher()
 {
     FILE *file = fopen(FILENAMETEACHERS, "w");
@@ -187,6 +199,8 @@ void removeteacher()
     }
     fclose(file);
 }
+
+//search teacher by name
 void searchbyteachername(char str[])
 {
     int n = strlen(str);
@@ -204,6 +218,8 @@ void searchbyteachername(char str[])
         printf("Teacher was not found.\n");
     }
 }
+
+//search teacher by mobile number
 void searchbyteachermobno(long long int number)
 {
     int index = -1;
@@ -224,6 +240,8 @@ void searchbyteachermobno(long long int number)
         printf("Teacher was not found.\n");
     }
 }
+
+//group teachers by gender
 void groupbyteachergender(char str[])
 {
     int indices[numteachers];
@@ -240,150 +258,4 @@ void groupbyteachergender(char str[])
     {
         printf("%-20s%-10s%-10s%-10d%-20s%-28s%-10lld\n", teacher[indices[i]].name, teacher[indices[i]].employeeID, teacher[indices[i]].gender, teacher[indices[i]].age, teacher[indices[i]].state, teacher[indices[i]].email, teacher[indices[i]].mobileno);
     }
-}
-void teachers_main()
-{
-    loadteacherdatafromfile();
-    printf("Welcome to Classvault\n");
-    int choice, choice2;
-
-    do
-    {
-        printf("\nTeacher-list Menu\n");
-        printf("0. Exit\n");
-        printf("1. Add Teacher\n");
-        printf("2. View Teachers\n");
-        printf("3. Remove Teacher\n");
-        printf("4. Search Teacher\n");
-        printf("5. Group Teachers\n");
-        printf("6. Show Feedback\n");
-        printf("Enter your choice(pls enter the number): ");
-        scanf("%d", &choice);
-
-        switch (choice)
-        {
-        case 0:
-            printf("Exiting Classvault. Goodbye!\n");
-            break;
-        case 1:
-            addteacher();
-            break;
-        case 2:
-            viewteacher();
-            break;
-        case 3:
-            removeteacher();
-            break;
-        case 4:
-        {
-            do
-            {
-                printf("\nTeacher-search Menu\n");
-                printf("0. Exit\n");
-                printf("1. Search by name.\n");
-                printf("2. Search by mobile number.\n");
-                printf("Enter your choice(pls enter the number): ");
-                scanf("%d", &choice2);
-                getchar();
-
-                switch (choice2)
-                {
-                case 0:
-                    printf("Exiting Teacher-search.\n");
-                    sleep(1);
-                    break;
-                case 1:
-                {
-                    char teacher_name[50];
-                    printf("Enter the name : ");
-                    scanf("%s", &teacher_name);
-                    strupr(teacher_name);
-                    searchbyteachername(teacher_name);
-                    break;
-                }
-                case 2:
-                {
-                    long long int mob_num;
-                    printf("Enter your mobile no.: ");
-                    while (1)
-                    {
-                        scanf("%lld", &mob_num);
-                        long long int temp = mob_num;
-                        int count = 0;
-                        while (temp)
-                        {
-                            temp /= 10;
-                            count++;
-                        }
-                        if (count == 10)
-                        {
-                            break;
-                        }
-                        else
-                            printf("Enter a valid phone number\n");
-                    }
-                    searchbyteachermobno(mob_num);
-                    break;
-                }
-                }
-            } while (choice2 != 0);
-            break;
-        }
-        case 5:
-        {
-            do
-            {
-                printf("\nStudent-Group Menu\n");
-                printf("0. Exit\n");
-                printf("1. Group by gender.\n");
-                printf("Enter your choice(pls enter the number): ");
-                scanf("%d", &choice2);
-                getchar();
-
-                switch (choice2)
-                {
-                case 0:
-                    printf("Exiting student-group\n");
-                    sleep(1);
-                    break;
-                case 1:
-                {
-                    char gender;
-                    char teacher_gender[10];
-                    printf("Enter your gender.\n");
-                there:
-                    printf("M for male and F for female.\n");
-                    scanf("%c", &gender);
-                    getchar();
-                    if (gender == 'M' || gender == 'm')
-                    {
-                        strcpy(teacher_gender, "MALE");
-                    }
-                    else if (gender == 'F' || gender == 'f')
-                    {
-                        strcpy(teacher_gender, "FEMALE");
-                    }
-                    else
-                    {
-                        printf("Enter correct gender : ");
-                        goto there;
-                    }
-                    groupbyteachergender(teacher_gender);
-                    break;
-                }
-                }
-            } while (choice2 != 0);
-            break;
-        }
-        case 6:
-            showfeedback();
-            break;
-        default:
-            printf("Invalid choice. Exiting application.\n");
-            return;
-        }
-        sleep(1);
-    } while (choice != 0);
-
-    return;
 }
