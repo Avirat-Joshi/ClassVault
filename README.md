@@ -38,7 +38,7 @@ We distributed the subparts of our code within our(group of 4)
 
 ## Database
 - We have used a student database of our batch for demo purposes.
-- The teacher database on the other hand is a mix of various our professors.
+- The teacher database on the other hand is a list of some of our professors.
 - The address of students is a randomly generated city out of 16 cities.
 - The marks in marks.csv are randomly generated and do not belong to any student.
 
